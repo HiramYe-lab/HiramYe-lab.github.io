@@ -13,7 +13,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
@@ -55,6 +55,8 @@
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
 
 
 
@@ -147,18 +149,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -323,7 +325,7 @@ about me, check out the <a href="/about">About</a> page.</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/11/Learning-Journey-for-torch/LJ_torch_nn_norms/" class="post-title-link" itemprop="url">Optional Norms for Each Layer</a>
+          <a href="/2026/02/11/Learning-Journey-for-torch/LJ_torch_nn_norms/" class="post-title-link" itemprop="url">Normalization Layers in PyTorch</a>
         </h2>
 
         <div class="post-meta-container">
@@ -334,7 +336,7 @@ about me, check out the <a href="/about">About</a> page.</p>
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2026-02-11 09:46:01" itemprop="dateCreated datePublished" datetime="2026-02-11T09:46:01+00:00">2026-02-11</time>
+      <time title="Created: 2026-02-11 17:46:01" itemprop="dateCreated datePublished" datetime="2026-02-11T17:46:01+00:00">2026-02-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -343,6 +345,19 @@ about me, check out the <a href="/about">About</a> page.</p>
       <span class="post-meta-item-text">Edited on</span>
       <time title="Modified: 2026-02-12 02:45:14" itemprop="dateModified" datetime="2026-02-12T02:45:14+00:00">2026-02-12</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -354,144 +369,32 @@ about me, check out the <a href="/about">About</a> page.</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>There are several <strong>norms</strong> available for the
-normalization of embeddings generated from each layer.</p>
-<p>The <strong>conventional norms</strong> are given in the following
-<em>catalog</em>:</p>
-<p>[TOC]</p>
-<hr />
+          <p>Normalization layers are essential for stable training of deep neural networks. This post catalogs the key normalization modules available in PyTorch, with code and conceptual explanations.</p>
 <h2 id="layernorm">LayerNorm</h2>
-<p>The reference document is <a
-target="_blank" rel="noopener" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html">here</a>
-with the source code given <a
-target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/blob/v2.10.0/torch/nn/modules/normalization.py#L106">here</a>.</p>
+<p>The reference document is <a target="_blank" rel="noopener" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.LayerNorm.html">here</a> with the source code given <a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/blob/v2.10.0/torch/nn/modules/normalization.py#L106">here</a>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LayerNorm</span>(<span class="title class_ inherited__">Module</span>):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;Applies Layer Normalization over a mini-batch of inputs.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This layer implements the operation as described in</span></span><br><span class="line"><span class="string">    the paper `Layer Normalization &lt;https://arxiv.org/abs/1607.06450&gt;`__</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. math::</span></span><br><span class="line"><span class="string">        y = \frac&#123;x - \mathrm&#123;E&#125;[x]&#125;&#123; \sqrt&#123;\mathrm&#123;Var&#125;[x] + \epsilon&#125;&#125; * \gamma + \beta</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    The mean and standard-deviation are calculated over the last `D` dimensions, where `D`</span></span><br><span class="line"><span class="string">    is the dimension of :attr:`normalized_shape`. For example, if :attr:`normalized_shape`</span></span><br><span class="line"><span class="string">    is ``(3, 5)`` (a 2-dimensional shape), the mean and standard-deviation are computed over</span></span><br><span class="line"><span class="string">    the last 2 dimensions of the input (i.e. ``input.mean((-2, -1))``).</span></span><br><span class="line"><span class="string">    :math:`\gamma` and :math:`\beta` are learnable affine transform parameters of</span></span><br><span class="line"><span class="string">    :attr:`normalized_shape` if :attr:`elementwise_affine` is ``True``.</span></span><br><span class="line"><span class="string">    The variance is calculated via the biased estimator, equivalent to</span></span><br><span class="line"><span class="string">    `torch.var(input, correction=0)`.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. note::</span></span><br><span class="line"><span class="string">        Unlike Batch Normalization and Instance Normalization, which applies</span></span><br><span class="line"><span class="string">        scalar scale and bias for each entire channel/plane with the</span></span><br><span class="line"><span class="string">        :attr:`affine` option, Layer Normalization applies per-element scale and</span></span><br><span class="line"><span class="string">        bias with :attr:`elementwise_affine`.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    This layer uses statistics computed from input data in both training and</span></span><br><span class="line"><span class="string">    evaluation modes.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        normalized_shape (int or list or torch.Size): input shape from an expected input</span></span><br><span class="line"><span class="string">            of size</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            .. math::</span></span><br><span class="line"><span class="string">                [* \times \text&#123;normalized\_shape&#125;[0] \times \text&#123;normalized\_shape&#125;[1]</span></span><br><span class="line"><span class="string">                    \times \ldots \times \text&#123;normalized\_shape&#125;[-1]]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">            If a single integer is used, it is treated as a singleton list, and this module will</span></span><br><span class="line"><span class="string">            normalize over the last dimension which is expected to be of that specific size.</span></span><br><span class="line"><span class="string">        eps: a value added to the denominator for numerical stability. Default: 1e-5</span></span><br><span class="line"><span class="string">        elementwise_affine: a boolean value that when set to ``True``, this module</span></span><br><span class="line"><span class="string">            has learnable per-element affine parameters initialized to ones (for weights)</span></span><br><span class="line"><span class="string">            and zeros (for biases). Default: ``True``.</span></span><br><span class="line"><span class="string">        bias: If set to ``False``, the layer will not learn an additive bias (only relevant if</span></span><br><span class="line"><span class="string">            :attr:`elementwise_affine` is ``True``). Default: ``True``.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Attributes:</span></span><br><span class="line"><span class="string">        weight: the learnable weights of the module of shape</span></span><br><span class="line"><span class="string">            :math:`\text&#123;normalized\_shape&#125;` when :attr:`elementwise_affine` is set to ``True``.</span></span><br><span class="line"><span class="string">            The values are initialized to 1.</span></span><br><span class="line"><span class="string">        bias:   the learnable bias of the module of shape</span></span><br><span class="line"><span class="string">                :math:`\text&#123;normalized\_shape&#125;` when :attr:`elementwise_affine` is set to ``True``.</span></span><br><span class="line"><span class="string">                The values are initialized to 0.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Shape:</span></span><br><span class="line"><span class="string">        - Input: :math:`(N, *)`</span></span><br><span class="line"><span class="string">        - Output: :math:`(N, *)` (same shape as input)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Examples::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # NLP Example</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; batch, sentence_length, embedding_dim = 20, 5, 10</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; embedding = torch.randn(batch, sentence_length, embedding_dim)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; layer_norm = nn.LayerNorm(embedding_dim)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # Activate module</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; layer_norm(embedding)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt;</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # Image Example</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; N, C, H, W = 20, 5, 10, 10</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; input = torch.randn(N, C, H, W)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # Normalize over the last three dimensions (i.e. the channel and spatial dimensions)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # as shown in the image below</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; layer_norm = nn.LayerNorm([C, H, W])</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; output = layer_norm(input)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. image:: ../_static/img/nn/layer_norm.jpg</span></span><br><span class="line"><span class="string">        :scale: 50 %</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    __constants__ = [<span class="string">&quot;normalized_shape&quot;</span>, <span class="string">&quot;eps&quot;</span>, <span class="string">&quot;elementwise_affine&quot;</span>]</span><br><span class="line">    normalized_shape: <span class="built_in">tuple</span>[<span class="built_in">int</span>, ...]</span><br><span class="line">    eps: <span class="built_in">float</span></span><br><span class="line">    elementwise_affine: <span class="built_in">bool</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        normalized_shape: _shape_t,</span></span><br><span class="line"><span class="params">        eps: <span class="built_in">float</span> = <span class="number">1e-5</span>,</span></span><br><span class="line"><span class="params">        elementwise_affine: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">        bias: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">        device=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">        dtype=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    </span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        factory_kwargs = &#123;<span class="string">&quot;device&quot;</span>: device, <span class="string">&quot;dtype&quot;</span>: dtype&#125;</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(normalized_shape, numbers.Integral):</span><br><span class="line">            <span class="comment"># mypy error: incompatible types in assignment</span></span><br><span class="line">            normalized_shape = (normalized_shape,)  <span class="comment"># type: ignore[assignment]</span></span><br><span class="line">        <span class="variable language_">self</span>.normalized_shape = <span class="built_in">tuple</span>(normalized_shape)  <span class="comment"># type: ignore[arg-<span class="built_in">type</span>]</span></span><br><span class="line">        <span class="variable language_">self</span>.eps = eps</span><br><span class="line">        <span class="variable language_">self</span>.elementwise_affine = elementwise_affine</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.elementwise_affine:</span><br><span class="line">            <span class="variable language_">self</span>.weight = Parameter(</span><br><span class="line">                torch.empty(<span class="variable language_">self</span>.normalized_shape, **factory_kwargs)</span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">if</span> bias:</span><br><span class="line">                <span class="variable language_">self</span>.bias = Parameter(</span><br><span class="line">                    torch.empty(<span class="variable language_">self</span>.normalized_shape, **factory_kwargs)</span><br><span class="line">                )</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="variable language_">self</span>.register_parameter(<span class="string">&quot;bias&quot;</span>, <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="variable language_">self</span>.register_parameter(<span class="string">&quot;weight&quot;</span>, <span class="literal">None</span>)</span><br><span class="line">            <span class="variable language_">self</span>.register_parameter(<span class="string">&quot;bias&quot;</span>, <span class="literal">None</span>)</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.reset_parameters()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reset_parameters</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.elementwise_affine:</span><br><span class="line">            init.ones_(<span class="variable language_">self</span>.weight)</span><br><span class="line">            <span class="keyword">if</span> <span class="variable language_">self</span>.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                init.zeros_(<span class="variable language_">self</span>.bias)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, <span class="built_in">input</span>: Tensor</span>) -&gt; Tensor:</span><br><span class="line">        <span class="keyword">return</span> F.layer_norm(</span><br><span class="line">            <span class="built_in">input</span>, <span class="variable language_">self</span>.normalized_shape, <span class="variable language_">self</span>.weight, <span class="variable language_">self</span>.bias, <span class="variable language_">self</span>.eps</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">extra_repr</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="string">&quot;&#123;normalized_shape&#125;, eps=&#123;eps&#125;, &quot;</span></span><br><span class="line">            <span class="string">&quot;elementwise_affine=&#123;elementwise_affine&#125;&quot;</span>.<span class="built_in">format</span>(**<span class="variable language_">self</span>.__dict__)</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
-<p>The expression is given by <span class="math display">$$
+<p>The expression is given by <br /><span class="math display">$$
 y=\gamma\frac{x-\mu}{\sqrt{\sigma^2+\varepsilon}}+\beta,
-$$</span> where <span class="math inline"><em>μ</em></span> and <span
-class="math inline"><em>σ</em><sup>2</sup></span> are the
-<strong>mean</strong> and <strong>variance</strong>, respectively, and
-<span class="math inline"><em>γ</em></span> and <span
-class="math inline"><em>β</em></span> are
-<strong><em>learnable</em></strong> parameters.</p>
-<p>To clarify the deployment of <span
-class="math inline"><em>μ</em></span> and <span
-class="math inline"><em>σ</em><sup>2</sup></span>, it is necessary to
-know <em>how the samples are selected</em>.</p>
+$$</span><br /> where <span class="math inline"><em>μ</em></span> and <span class="math inline"><em>σ</em><sup>2</sup></span> are the <strong>mean</strong> and <strong>variance</strong>, respectively, and <span class="math inline"><em>γ</em></span> and <span class="math inline"><em>β</em></span> are <strong><em>learnable</em></strong> parameters.</p>
+<p>To clarify the deployment of <span class="math inline"><em>μ</em></span> and <span class="math inline"><em>σ</em><sup>2</sup></span>, it is necessary to know <em>how the samples are selected</em>.</p>
 <ul>
-<li>Assume <code>input = torch.Tensor(a, b, c, d, e, f)</code>, that is
-<code>input</code> has <span class="math inline">6</span>
-dimensions.</li>
-<li>Assume <code>normalized_shape = (c, d, e, f)</code>, that is
-<code>normalized_shape</code> has <span
-class="math inline"><em>D</em> = 4</span> dimensions.</li>
-<li><code>normalized_shape</code> is referred to as the
-<strong><em>realm</em></strong> where <span
-class="math inline"><em>μ</em></span> and <span
-class="math inline"><em>σ</em><sup>2</sup></span> are computed.
+<li>Assume <code>input = torch.Tensor(a, b, c, d, e, f)</code>, that is <code>input</code> has <span class="math inline">6</span> dimensions.</li>
+<li>Assume <code>normalized_shape = (c, d, e, f)</code>, that is <code>normalized_shape</code> has <span class="math inline"><em>D</em> = 4</span> dimensions.</li>
+<li><code>normalized_shape</code> is referred to as the <strong><em>realm</em></strong> where <span class="math inline"><em>μ</em></span> and <span class="math inline"><em>σ</em><sup>2</sup></span> are computed.
 <ul>
-<li>The <strong><em>realm</em></strong> corresponds to the last <span
-class="math inline"><em>D</em> = 4</span> dimensions so that <span
-class="math inline"><em>μ</em></span> and <span
-class="math inline"><em>σ</em><sup>2</sup></span> represent the
-<strong>statistical property</strong> of
-<code>(a, b, :, :, :, :)</code>.</li>
+<li>The <strong><em>realm</em></strong> corresponds to the last <span class="math inline"><em>D</em> = 4</span> dimensions so that <span class="math inline"><em>μ</em></span> and <span class="math inline"><em>σ</em><sup>2</sup></span> represent the <strong>statistical property</strong> of <code>(a, b, :, :, :, :)</code>.</li>
 </ul></li>
 </ul>
 <p>For instance,</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NLP Example (Instance 1)</span></span><br><span class="line">batch, sentence_length, embedding_dim = <span class="number">20</span>, <span class="number">5</span>, <span class="number">10</span></span><br><span class="line">embedding = torch.randn(batch, sentence_length, embedding_dim)</span><br><span class="line">layer_norm = nn.LayerNorm(embedding_dim)</span><br><span class="line"><span class="comment"># Activate module</span></span><br><span class="line">layer_norm(embedding)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Image Example (Instance 2)</span></span><br><span class="line">N, C, H, W = <span class="number">20</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">10</span></span><br><span class="line"><span class="built_in">input</span> = torch.randn(N, C, H, W)</span><br><span class="line"><span class="comment"># Normalize over the last three dimensions (i.e. the channel and spatial dimensions)</span></span><br><span class="line"><span class="comment"># as shown in the image below</span></span><br><span class="line">layer_norm = nn.LayerNorm([C, H, W])</span><br><span class="line">output = layer_norm(<span class="built_in">input</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="batchnorm">BatchNorm</h2>
-<p>Different from <code>LayerNorm</code>, <code>BatchNorm</code> was
-proposed initially and widely applied in CNN.</p>
+<p>Different from <code>LayerNorm</code>, <code>BatchNorm</code> was proposed initially and widely applied in CNN.</p>
 <h3 id="batchnorm1d">BatchNorm1d</h3>
-<p>The reference document is <a
-target="_blank" rel="noopener" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.batchnorm.BatchNorm1d.html">here</a>
-with the source code given <a
-target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/blob/v2.10.0/torch/nn/modules/batchnorm.py#L279">here</a>.</p>
+<p>The reference document is <a target="_blank" rel="noopener" href="https://docs.pytorch.org/docs/stable/generated/torch.nn.modules.batchnorm.BatchNorm1d.html">here</a> with the source code given <a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/blob/v2.10.0/torch/nn/modules/batchnorm.py#L279">here</a>.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BatchNorm1d</span>(<span class="title class_ inherited__">_BatchNorm</span>):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;Applies Batch Normalization over a 2D or 3D input.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Method described in the paper</span></span><br><span class="line"><span class="string">    `Batch Normalization: Accelerating Deep Network Training by Reducing</span></span><br><span class="line"><span class="string">    Internal Covariate Shift &lt;https://arxiv.org/abs/1502.03167&gt;`__ .</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. math::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        y = \frac&#123;x - \mathrm&#123;E&#125;[x]&#125;&#123;\sqrt&#123;\mathrm&#123;Var&#125;[x] + \epsilon&#125;&#125; * \gamma + \beta</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    The mean and standard-deviation are calculated per-dimension over</span></span><br><span class="line"><span class="string">    the mini-batches and :math:`\gamma` and :math:`\beta` are learnable parameter vectors</span></span><br><span class="line"><span class="string">    of size `C` (where `C` is the number of features or channels of the input). By default, the</span></span><br><span class="line"><span class="string">    elements of :math:`\gamma` are set to 1 and the elements of :math:`\beta` are set to 0.</span></span><br><span class="line"><span class="string">    At train time in the forward pass, the variance is calculated via the biased estimator,</span></span><br><span class="line"><span class="string">    equivalent to ``torch.var(input, correction=0)``. However, the value stored in the</span></span><br><span class="line"><span class="string">    moving average of the variance is calculated via the unbiased  estimator, equivalent to</span></span><br><span class="line"><span class="string">    ``torch.var(input, correction=1)``.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Also by default, during training this layer keeps running estimates of its</span></span><br><span class="line"><span class="string">    computed mean and variance, which are then used for normalization during</span></span><br><span class="line"><span class="string">    evaluation. The running estimates are kept with a default :attr:`momentum`</span></span><br><span class="line"><span class="string">    of 0.1.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    If :attr:`track_running_stats` is set to ``False``, this layer then does not</span></span><br><span class="line"><span class="string">    keep running estimates, and batch statistics are instead used during</span></span><br><span class="line"><span class="string">    evaluation time as well.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. note::</span></span><br><span class="line"><span class="string">        This :attr:`momentum` argument is different from one used in optimizer</span></span><br><span class="line"><span class="string">        classes and the conventional notion of momentum. Mathematically, the</span></span><br><span class="line"><span class="string">        update rule for running statistics here is</span></span><br><span class="line"><span class="string">        :math:`\hat&#123;x&#125;_\text&#123;new&#125; = (1 - \text&#123;momentum&#125;) \times \hat&#123;x&#125; + \text&#123;momentum&#125; \times x_t`,</span></span><br><span class="line"><span class="string">        where :math:`\hat&#123;x&#125;` is the estimated statistic and :math:`x_t` is the</span></span><br><span class="line"><span class="string">        new observed value.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Because the Batch Normalization is done over the `C` dimension, computing statistics</span></span><br><span class="line"><span class="string">    on `(N, L)` slices, it&#x27;s common terminology to call this Temporal Batch Normalization.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        num_features: number of features or channels :math:`C` of the input</span></span><br><span class="line"><span class="string">        eps: a value added to the denominator for numerical stability.</span></span><br><span class="line"><span class="string">            Default: 1e-5</span></span><br><span class="line"><span class="string">        momentum: the value used for the running_mean and running_var</span></span><br><span class="line"><span class="string">            computation. Can be set to ``None`` for cumulative moving average</span></span><br><span class="line"><span class="string">            (i.e. simple average). Default: 0.1</span></span><br><span class="line"><span class="string">        affine: a boolean value that when set to ``True``, this module has</span></span><br><span class="line"><span class="string">            learnable affine parameters. Default: ``True``</span></span><br><span class="line"><span class="string">        track_running_stats: a boolean value that when set to ``True``, this</span></span><br><span class="line"><span class="string">            module tracks the running mean and variance, and when set to ``False``,</span></span><br><span class="line"><span class="string">            this module does not track such statistics, and initializes statistics</span></span><br><span class="line"><span class="string">            buffers :attr:`running_mean` and :attr:`running_var` as ``None``.</span></span><br><span class="line"><span class="string">            When these buffers are ``None``, this module always uses batch statistics.</span></span><br><span class="line"><span class="string">            in both training and eval modes. Default: ``True``</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Shape:</span></span><br><span class="line"><span class="string">        - Input: :math:`(N, C)` or :math:`(N, C, L)`, where :math:`N` is the batch size,</span></span><br><span class="line"><span class="string">          :math:`C` is the number of features or channels, and :math:`L` is the sequence length</span></span><br><span class="line"><span class="string">        - Output: :math:`(N, C)` or :math:`(N, C, L)` (same shape as input)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Examples::</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # With Learnable Parameters</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; m = nn.BatchNorm1d(100)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; # Without Learnable Parameters</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; m = nn.BatchNorm1d(100, affine=False)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; input = torch.randn(20, 100)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; output = m(input)</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_check_input_dim</span>(<span class="params">self, <span class="built_in">input</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">input</span>.dim() != <span class="number">2</span> <span class="keyword">and</span> <span class="built_in">input</span>.dim() != <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">f&quot;expected 2D or 3D input (got <span class="subst">&#123;<span class="built_in">input</span>.dim()&#125;</span>D input)&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>The expression is given as similar to the one in
-<code>LayerNorm</code>, but the calculations for <span
-class="math inline"><em>μ</em></span> and <span
-class="math inline"><em>σ</em><sup>2</sup></span> are
-<strong>different</strong>.</p>
-<p>Specifically, the acquisition for <code>LayerNorm</code> is from the
-last dimensions while the one for <code>BatchNorm1d</code> relies on the
-first dimensions.</p>
-<p>Therefore, <code>BatchNorm1d</code> calculates the statistical
-properties over <strong><em>the batch dimension</em></strong>.</p>
-<h3 id="batchnorm2d">BatchNorm2d</h3>
-<p><code>[READY TO ADD]</code></p>
-<h3 id="batchnorm3d">BatchNorm3d</h3>
-<p><code>[READY TO ADD]</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://devrech.github.io/2026/02/11/Learning-Journey-for-torchLJ_torch_nn_norms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="DevRecH">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevRecH's Blog">
-      <meta itemprop="description" content="A blog about software development, data, AI, and the journey of learning.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | DevRecH's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/11/Learning-Journey-for-torchLJ_torch_nn_norms/" class="post-title-link" itemprop="url">Optional Norms for Each Layer</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2026-02-11 09:45:34" itemprop="dateCreated datePublished" datetime="2026-02-11T09:45:34+00:00">2026-02-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          
+<p>The expression is given as similar to the one in <code>LayerNorm</code>, but the calculations for <span class="math inline"><em>μ</em></span> and <span class="math inline"><em>σ</em><sup>2</sup></span> are <strong>different</strong>.</p>
+<p>Specifically, the acquisition for <code>LayerNorm</code> is from the last dimensions while the one for <code>BatchNorm1d</code> relies on the first dimensions.</p>
+<p>Therefore, <code>BatchNorm1d</code> calculates the statistical</p>
 
       
     </div>
@@ -536,7 +439,7 @@ properties over <strong><em>the batch dimension</em></strong>.</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/11/Learning-Journey-for-torch/LJ_torch_geometric_nn_Message_Passing/" class="post-title-link" itemprop="url">LJ torch geometric Message Passing</a>
+          <a href="/2026/02/11/Learning-Journey-for-torch/LJ_torch_geometric_nn_Message_Passing/" class="post-title-link" itemprop="url">Message Passing in PyTorch Geometric</a>
         </h2>
 
         <div class="post-meta-container">
@@ -546,9 +449,15 @@ properties over <strong><em>the batch dimension</em></strong>.</p>
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-02-11 04:45:23 / Modified: 04:46:48" itemprop="dateCreated datePublished" datetime="2026-02-11T04:45:23+00:00">2026-02-11</time>
+      <time title="Created: 2026-02-11 04:45:23" itemprop="dateCreated datePublished" datetime="2026-02-11T04:45:23+00:00">2026-02-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-14 06:14:29" itemprop="dateModified" datetime="2026-06-14T06:14:29+00:00">2026-06-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -556,23 +465,11 @@ properties over <strong><em>the batch dimension</em></strong>.</p>
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a>
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/" itemprop="url" rel="index"><span itemprop="name">torch</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/geometric/" itemprop="url" rel="index"><span itemprop="name">geometric</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/geometric/nn/" itemprop="url" rel="index"><span itemprop="name">nn</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/geometric/nn/Message-Passing/" itemprop="url" rel="index"><span itemprop="name">Message Passing</span></a>
+          <a href="/categories/Deep-Learning/PyTorch-Geometric/" itemprop="url" rel="index"><span itemprop="name">PyTorch Geometric</span></a>
         </span>
     </span>
 
@@ -586,8 +483,9 @@ properties over <strong><em>the batch dimension</em></strong>.</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>The reference site is <a
-target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.conv.MessagePassing.html#torch_geometric.nn.conv.MessagePassing">here</a>.</p>
+          <p>Reference documentation: <a
+target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en/latest/generated/torch_geometric.nn.conv.MessagePassing.html#torch_geometric.nn.conv.MessagePassing">torch_geometric.nn.conv.MessagePassing</a>.</p>
+<img src="/2026/02/11/Learning-Journey-for-torch/LJ_torch_geometric_nn_Message_Passing/image-20260614132944970.png" class="" title="Message Passing diagram">
 
       
     </div>
@@ -632,7 +530,7 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/" class="post-title-link" itemprop="url">LJ_torch_Module_GVPGNNModel</a>
+          <a href="/2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/" class="post-title-link" itemprop="url">Building a GVP-GNN Model with torch.nn.Module</a>
         </h2>
 
         <div class="post-meta-container">
@@ -643,7 +541,7 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2026-02-10 07:37:45" itemprop="dateCreated datePublished" datetime="2026-02-10T07:37:45+00:00">2026-02-10</time>
+      <time title="Created: 2026-02-10 15:37:45" itemprop="dateCreated datePublished" datetime="2026-02-10T15:37:45+00:00">2026-02-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -658,19 +556,11 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a>
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/" itemprop="url" rel="index"><span itemprop="name">torch</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/nn/" itemprop="url" rel="index"><span itemprop="name">nn</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/nn/instance/" itemprop="url" rel="index"><span itemprop="name">instance</span></a>
+          <a href="/categories/Deep-Learning/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
         </span>
     </span>
 
@@ -684,8 +574,96 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>The corresponding <strong>code</strong> is given as follows.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GVPGNNModel</span>(torch.nn.Module):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    GVP-GNN model from &quot;Equivariant Graph Neural Networks for 3D Macromolecular Structure&quot;.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        r_max: <span class="built_in">float</span> = <span class="number">10.0</span>,</span></span><br><span class="line"><span class="params">        num_bessel: <span class="built_in">int</span> = <span class="number">8</span>,</span></span><br><span class="line"><span class="params">        num_polynomial_cutoff: <span class="built_in">int</span> = <span class="number">5</span>,</span></span><br><span class="line"><span class="params">        num_layers: <span class="built_in">int</span> = <span class="number">5</span>,</span></span><br><span class="line"><span class="params">        in_dim=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">        out_dim=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">        s_dim: <span class="built_in">int</span> = <span class="number">128</span>,</span></span><br><span class="line"><span class="params">        v_dim: <span class="built_in">int</span> = <span class="number">16</span>,</span></span><br><span class="line"><span class="params">        s_dim_edge: <span class="built_in">int</span> = <span class="number">32</span>,</span></span><br><span class="line"><span class="params">        v_dim_edge: <span class="built_in">int</span> = <span class="number">1</span>,</span></span><br><span class="line"><span class="params">        pool: <span class="built_in">str</span> = <span class="string">&quot;sum&quot;</span>,</span></span><br><span class="line"><span class="params">        residual: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">        equivariant_pred: <span class="built_in">bool</span> = <span class="literal">False</span></span></span><br><span class="line"><span class="params">    </span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initializes an instance of the GVPGNNModel class with the provided parameters.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Parameters:</span></span><br><span class="line"><span class="string">        - r_max (float): Maximum distance for Bessel basis functions (default: 10.0)</span></span><br><span class="line"><span class="string">        - num_bessel (int): Number of Bessel basis functions (default: 8)</span></span><br><span class="line"><span class="string">        - num_polynomial_cutoff (int): Number of polynomial cutoff basis functions (default: 5)</span></span><br><span class="line"><span class="string">        - num_layers (int): Number of layers in the model (default: 5)</span></span><br><span class="line"><span class="string">        - in_dim (int): Input dimension of the model (default: 1)</span></span><br><span class="line"><span class="string">        - out_dim (int): Output dimension of the model (default: 1)</span></span><br><span class="line"><span class="string">        - s_dim (int): Dimension of the node state embeddings (default: 128)</span></span><br><span class="line"><span class="string">        - v_dim (int): Dimension of the node vector embeddings (default: 16)</span></span><br><span class="line"><span class="string">        - s_dim_edge (int): Dimension of the edge state embeddings (default: 32)</span></span><br><span class="line"><span class="string">        - v_dim_edge (int): Dimension of the edge vector embeddings (default: 1)</span></span><br><span class="line"><span class="string">        - pool (str): Global pooling method to be used (default: &quot;sum&quot;)</span></span><br><span class="line"><span class="string">        - residual (bool): Whether to use residual connections (default: True)</span></span><br><span class="line"><span class="string">        - equivariant_pred (bool): Whether it is an equivariant prediction task (default: False)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        </span><br><span class="line">        <span class="variable language_">self</span>.r_max = r_max</span><br><span class="line">        <span class="variable language_">self</span>.num_layers = num_layers</span><br><span class="line">        <span class="variable language_">self</span>.equivariant_pred = equivariant_pred</span><br><span class="line">        <span class="variable language_">self</span>.s_dim = s_dim</span><br><span class="line">        <span class="variable language_">self</span>.v_dim = v_dim</span><br><span class="line">        </span><br><span class="line">        activations = (F.relu, <span class="literal">None</span>)</span><br><span class="line">        _DEFAULT_V_DIM = (s_dim, v_dim)</span><br><span class="line">        _DEFAULT_E_DIM = (s_dim_edge, v_dim_edge) </span><br><span class="line"></span><br><span class="line">        <span class="comment"># Node embedding</span></span><br><span class="line">        <span class="variable language_">self</span>.emb_in = torch.nn.Embedding(in_dim, s_dim)</span><br><span class="line">        <span class="variable language_">self</span>.W_v = torch.nn.Sequential(</span><br><span class="line">            gvp.LayerNorm((s_dim, <span class="number">0</span>)),</span><br><span class="line">            gvp.GVP((s_dim, <span class="number">0</span>), _DEFAULT_V_DIM,</span><br><span class="line">                activations=(<span class="literal">None</span>, <span class="literal">None</span>), vector_gate=<span class="literal">True</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Edge embedding</span></span><br><span class="line">        <span class="variable language_">self</span>.radial_embedding = RadialEmbeddingBlock(</span><br><span class="line">            r_max=r_max,</span><br><span class="line">            num_bessel=num_bessel,</span><br><span class="line">            num_polynomial_cutoff=num_polynomial_cutoff,</span><br><span class="line">        )</span><br><span class="line">        <span class="variable language_">self</span>.W_e = torch.nn.Sequential(</span><br><span class="line">            gvp.LayerNorm((<span class="variable language_">self</span>.radial_embedding.out_dim, <span class="number">1</span>)),</span><br><span class="line">            gvp.GVP((<span class="variable language_">self</span>.radial_embedding.out_dim, <span class="number">1</span>), _DEFAULT_E_DIM, </span><br><span class="line">                activations=(<span class="literal">None</span>, <span class="literal">None</span>), vector_gate=<span class="literal">True</span>)</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Stack of GNN layers</span></span><br><span class="line">        <span class="variable language_">self</span>.layers = torch.nn.ModuleList(</span><br><span class="line">            gvp.GVPConvLayer(</span><br><span class="line">                _DEFAULT_V_DIM, _DEFAULT_E_DIM, </span><br><span class="line">                activations=activations, vector_gate=<span class="literal">True</span>,</span><br><span class="line">                residual=residual</span><br><span class="line">            ) </span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_layers)</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Global pooling/readout function</span></span><br><span class="line">        <span class="variable language_">self</span>.pool = &#123;<span class="string">&quot;mean&quot;</span>: global_mean_pool, <span class="string">&quot;sum&quot;</span>: global_add_pool&#125;[pool]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.equivariant_pred:</span><br><span class="line">            <span class="comment"># Linear predictor for equivariant tasks using geometric features</span></span><br><span class="line">            <span class="variable language_">self</span>.pred = torch.nn.Linear(s_dim + v_dim * <span class="number">3</span>, out_dim)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># MLP predictor for invariant tasks using only scalar features</span></span><br><span class="line">            <span class="variable language_">self</span>.pred = torch.nn.Sequential(</span><br><span class="line">                torch.nn.Linear(s_dim, s_dim),</span><br><span class="line">                torch.nn.ReLU(),</span><br><span class="line">                torch.nn.Linear(s_dim, out_dim)</span><br><span class="line">            )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, batch</span>):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Edge features</span></span><br><span class="line">        vectors = batch.pos[batch.edge_index[<span class="number">0</span>]] - batch.pos[batch.edge_index[<span class="number">1</span>]]  <span class="comment"># [n_edges, 3]</span></span><br><span class="line">        lengths = torch.linalg.norm(vectors, dim=-<span class="number">1</span>, keepdim=<span class="literal">True</span>)  <span class="comment"># [n_edges, 1]</span></span><br><span class="line">        </span><br><span class="line">        h_V = <span class="variable language_">self</span>.emb_in(batch.atoms)  <span class="comment"># (n,) -&gt; (n, d)</span></span><br><span class="line">        h_E = (</span><br><span class="line">            <span class="variable language_">self</span>.radial_embedding(lengths), </span><br><span class="line">            torch.nan_to_num(torch.div(vectors, lengths)).unsqueeze_(-<span class="number">2</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        h_V = <span class="variable language_">self</span>.W_v(h_V)</span><br><span class="line">        h_E = <span class="variable language_">self</span>.W_e(h_E)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> <span class="variable language_">self</span>.layers:</span><br><span class="line">            h_V = layer(h_V, batch.edge_index, h_E)</span><br><span class="line"></span><br><span class="line">        out = <span class="variable language_">self</span>.pool(gvp._merge(*h_V), batch.batch)  <span class="comment"># (n, d) -&gt; (batch_size, d)</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable language_">self</span>.equivariant_pred:</span><br><span class="line">            <span class="comment"># Select only scalars for invariant prediction</span></span><br><span class="line">            out = out[:,:<span class="variable language_">self</span>.s_dim]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.pred(out)  <span class="comment"># (batch_size, out_dim)</span></span><br></pre></td></tr></table></figure>
+          <p>Below is a complete PyTorch <code>nn.Module</code> subclass implementing a <strong>GVP-GNN</strong> model, based on the paper “Equivariant Graph Neural Networks for 3D Macromolecular Structure.”</p>
+<p>The model uses Geometric Vector Perceptrons (GVPs) for both node and edge embeddings, stacks multiple <code>GVPConvLayer</code> instances for message passing, and supports both equivariant and invariant prediction tasks.</p>
+<p>```python class GVPGNNModel(torch.nn.Module): """ GVP-GNN model from “Equivariant Graph Neural Networks for 3D Macromolecular Structure”. """ def <strong>init</strong>( self, r_max: float = 10.0, num_bessel: int = 8, num_polynomial_cutoff: int = 5, num_layers: int = 5, in_dim=1, out_dim=1, s_dim: int = 128, v_dim: int = 16, s_dim_edge: int = 32, v_dim_edge: int = 1, pool: str = “sum”, residual: bool = True, equivariant_pred: bool = False ): """ Initializes an instance of the GVPGNNModel class with the provided parameters.</p>
+<pre><code>    Parameters:
+    - r_max (float): Maximum distance for Bessel basis functions (default: 10.0)
+    - num_bessel (int): Number of Bessel basis functions (default: 8)
+    - num_polynomial_cutoff (int): Number of polynomial cutoff basis functions (default: 5)
+    - num_layers (int): Number of layers in the model (default: 5)
+    - in_dim (int): Input dimension of the model (default: 1)
+    - out_dim (int): Output dimension of the model (default: 1)
+    - s_dim (int): Dimension of the node state embeddings (default: 128)
+    - v_dim (int): Dimension of the node vector embeddings (default: 16)
+    - s_dim_edge (int): Dimension of the edge state embeddings (default: 32)
+    - v_dim_edge (int): Dimension of the edge vector embeddings (default: 1)
+    - pool (str): Global pooling method to be used (default: &quot;sum&quot;)
+    - residual (bool): Whether to use residual connections (default: True)
+    - equivariant_pred (bool): Whether it is an equivariant prediction task (default: False)
+    &quot;&quot;&quot;
+    super().__init__()
+    
+    self.r_max = r_max
+    self.num_layers = num_layers
+    self.equivariant_pred = equivariant_pred
+    self.s_dim = s_dim
+    self.v_dim = v_dim
+    
+    activations = (F.relu, None)
+    _DEFAULT_V_DIM = (s_dim, v_dim)
+    _DEFAULT_E_DIM = (s_dim_edge, v_dim_edge) 
+
+    # Node embedding
+    self.emb_in = torch.nn.Embedding(in_dim, s_dim)
+    self.W_v = torch.nn.Sequential(
+        gvp.LayerNorm((s_dim, 0)),
+        gvp.GVP((s_dim, 0), _DEFAULT_V_DIM,
+            activations=(None, None), vector_gate=True)
+    )
+
+    # Edge embedding
+    self.radial_embedding = RadialEmbeddingBlock(
+        r_max=r_max,
+        num_bessel=num_bessel,
+        num_polynomial_cutoff=num_polynomial_cutoff,
+    )
+    self.W_e = torch.nn.Sequential(
+        gvp.LayerNorm((self.radial_embedding.out_dim, 1)),
+        gvp.GVP((self.radial_embedding.out_dim, 1), _DEFAULT_E_DIM, 
+            activations=(None, None), vector_gate=True)
+    )
+    
+    # Stack of GNN layers
+    self.layers = torch.nn.ModuleList(
+        gvp.GVPConvLayer(
+            _DEFAULT_V_DIM, _DEFAULT_E_DIM, 
+            activations=activations, vector_gate=True,
+            residual=residual
+        ) 
+        for _ in range(num_layers)
+    )
+    
+    # Global pooling/readout function
+    self.pool = &#123;&quot;mean&quot;: global_mean_pool, &quot;sum&quot;: global_add_pool&#125;[pool]
+
+    if self.equivariant_pred:
+        # Linear predictor for equivariant tasks using geometric features
+        self.pred = torch.nn.Linear(s_dim + v_dim * 3, out_dim)
+    else:
+        # MLP predictor for invariant tasks using only scalar features
+        self.pred = torch.nn.Sequential(
+            torch.nn.Linear(s_dim, s_dim),
+            torch.nn.ReLU(),
+            torch.nn.Linear(s_dim, out_dim)
+        )
+
+def forward(self, batch):
+
+    # Edge features
+    vectors = batch.pos[batch.edge_index[0]] - batch.pos[batch.edge_index[1]]  # [n_edges, 3]
+    lengths = torch.linalg.norm(vectors, dim=-1, keepdim=True)  # [n_edges, 1]
+    
+    h_V = self.emb_in(batch.atoms)  # (n,) -&gt; (n, d)
+    h_E = (
+        self.radial_embedding(lengths), 
+        torch.nan_to_num(torch.div(vectors, lengths)).unsqueeze_(-2)
+    )
+
+    h_V = self.W_v(h_V)
+    h_E = self.W_e(h_E)
+
+    for layer in self.laye</code></pre>
 
       
     </div>
@@ -742,7 +720,7 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-02-10 05:56:52 / Modified: 06:21:01" itemprop="dateCreated datePublished" datetime="2026-02-10T05:56:52+00:00">2026-02-10</time>
+      <time title="Created: 2026-02-10 13:56:52 / Modified: 08:48:00" itemprop="dateCreated datePublished" datetime="2026-02-10T13:56:52+00:00">2026-02-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -750,7 +728,11 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Introduction/" itemprop="url" rel="index"><span itemprop="name">Introduction</span></a>
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Deep-Learning/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
         </span>
     </span>
 
@@ -764,7 +746,11 @@ target="_blank" rel="noopener" href="https://pytorch-geometric.readthedocs.io/en
     
     
     <div class="post-body" itemprop="articleBody">
-          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file is the introduction for my journey to learn how I learn &quot;pytorch&quot; for the rudimentary foundations.</span></span><br><span class="line"><span class="comment"># First, I would like to record some notes during this journey and record some thoughts about all related knowledge.</span></span><br><span class="line"><span class="comment"># In the meantime, I suppose it would be a great platform to allow everyone to partitipate in this journey to learn and share with the viewpoints to gather so that such knowledge can be absorbed well.</span></span><br><span class="line"><span class="comment"># Second, in a private view, I would use this seciton as a propellant to urge myself to move on so that I can take the responsibility for myself or even for my family.</span></span><br><span class="line"><span class="comment"># All files under this journey will be taged with [LJ_torch_&#123;sth&#125;], where sth denotes the corresponding content.</span></span><br></pre></td></tr></table></figure>
+          <p>This is the landing page for my journey learning <strong>PyTorch</strong> from the ground up. I’m documenting notes, code snippets, and reflections as I go — partly to solidify my own understanding, and partly to create a resource others can follow along with.</p>
+<h2 id="why-this-series">Why this series</h2>
+<p>Writing forces clarity. When I sit down to explain a concept — a <code>nn.Module</code> subclass, a message-passing layer, or how LayerNorm really works — the gaps in my understanding become impossible to ignore. This series is my way of closing those gaps in public.</p>
+<p>It’s also a way to stay accountable. Knowing that these notes are out there pushes me to keep going, to keep building, and to take my own learning seriously.</p>
+<h2 id="how-it">How it’</h2>
 
       
     </div>

@@ -226,7 +226,7 @@ body {
   box-sizing: border-box;
   color: var(--text-color);
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1em;
+  font-size: 0.875em;
   line-height: 2;
   min-height: 100%;
   position: relative;
@@ -910,6 +910,10 @@ pre code {
     transform: translate(1pt, -2pt) rotate(-1deg);
   }
 }
+.mermaid {
+  margin-bottom: 20px;
+  text-align: center;
+}
 .post-body .note {
   border-radius: 3px;
   margin-bottom: 20px;
@@ -1419,7 +1423,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #8c28ab;
+    background: #afeb0d;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);

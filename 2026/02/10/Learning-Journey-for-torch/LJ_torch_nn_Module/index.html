@@ -13,35 +13,37 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"devrech.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="The corresponding code is given as follows. 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
+    <meta name="description" content="Below is a complete PyTorch nn.Module subclass implementing a GVP-GNN model, based on the paper “Equivariant Graph Neural Networks for 3D Macromolecular Structure.” The model uses Geometric Vector Per">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LJ_torch_Module_GVPGNNModel">
+<meta property="og:title" content="Building a GVP-GNN Model with torch.nn.Module">
 <meta property="og:url" content="https://devrech.github.io/2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/index.html">
 <meta property="og:site_name" content="DevRecH&#39;s Blog">
-<meta property="og:description" content="The corresponding code is given as follows. 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182">
+<meta property="og:description" content="Below is a complete PyTorch nn.Module subclass implementing a GVP-GNN model, based on the paper “Equivariant Graph Neural Networks for 3D Macromolecular Structure.” The model uses Geometric Vector Per">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-02-10T07:37:45.000Z">
+<meta property="article:published_time" content="2026-02-10T15:37:45.000Z">
 <meta property="article:modified_time" content="2026-02-11T04:42:28.489Z">
 <meta property="article:author" content="DevRecH">
-<meta property="article:tag" content="LJ_torch_nn_Module">
-<meta property="article:tag" content="instance">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="learning-journey">
+<meta property="article:tag" content="nn-module">
+<meta property="article:tag" content="gvp-gnn">
 <meta name="twitter:card" content="summary">
 
 
 <link rel="canonical" href="https://devrech.github.io/2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://devrech.github.io/2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/","path":"2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/","title":"LJ_torch_Module_GVPGNNModel"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://devrech.github.io/2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/","path":"2026/02/10/Learning-Journey-for-torch/LJ_torch_nn_Module/","title":"Building a GVP-GNN Model with torch.nn.Module"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LJ_torch_Module_GVPGNNModel | DevRecH's Blog</title>
+<title>Building a GVP-GNN Model with torch.nn.Module | DevRecH's Blog</title>
   
 
 
@@ -58,6 +60,8 @@
 
   
 
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
 
 
 
@@ -150,18 +154,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -206,12 +210,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LJ_torch_Module_GVPGNNModel | DevRecH's Blog">
+      <meta itemprop="name" content="Building a GVP-GNN Model with torch.nn.Module | DevRecH's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LJ_torch_Module_GVPGNNModel
+          Building a GVP-GNN Model with torch.nn.Module
         </h1>
 
         <div class="post-meta-container">
@@ -222,7 +226,7 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2026-02-10 07:37:45" itemprop="dateCreated datePublished" datetime="2026-02-10T07:37:45+00:00">2026-02-10</time>
+      <time title="Created: 2026-02-10 15:37:45" itemprop="dateCreated datePublished" datetime="2026-02-10T15:37:45+00:00">2026-02-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -237,19 +241,11 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a>
+          <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
         </span>
           , 
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/" itemprop="url" rel="index"><span itemprop="name">torch</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/nn/" itemprop="url" rel="index"><span itemprop="name">nn</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/notes/torch/nn/instance/" itemprop="url" rel="index"><span itemprop="name">instance</span></a>
+          <a href="/categories/Deep-Learning/PyTorch/" itemprop="url" rel="index"><span itemprop="name">PyTorch</span></a>
         </span>
     </span>
 
@@ -262,8 +258,96 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>The corresponding <strong>code</strong> is given as follows.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GVPGNNModel</span>(torch.nn.Module):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    GVP-GNN model from &quot;Equivariant Graph Neural Networks for 3D Macromolecular Structure&quot;.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        r_max: <span class="built_in">float</span> = <span class="number">10.0</span>,</span></span><br><span class="line"><span class="params">        num_bessel: <span class="built_in">int</span> = <span class="number">8</span>,</span></span><br><span class="line"><span class="params">        num_polynomial_cutoff: <span class="built_in">int</span> = <span class="number">5</span>,</span></span><br><span class="line"><span class="params">        num_layers: <span class="built_in">int</span> = <span class="number">5</span>,</span></span><br><span class="line"><span class="params">        in_dim=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">        out_dim=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">        s_dim: <span class="built_in">int</span> = <span class="number">128</span>,</span></span><br><span class="line"><span class="params">        v_dim: <span class="built_in">int</span> = <span class="number">16</span>,</span></span><br><span class="line"><span class="params">        s_dim_edge: <span class="built_in">int</span> = <span class="number">32</span>,</span></span><br><span class="line"><span class="params">        v_dim_edge: <span class="built_in">int</span> = <span class="number">1</span>,</span></span><br><span class="line"><span class="params">        pool: <span class="built_in">str</span> = <span class="string">&quot;sum&quot;</span>,</span></span><br><span class="line"><span class="params">        residual: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">        equivariant_pred: <span class="built_in">bool</span> = <span class="literal">False</span></span></span><br><span class="line"><span class="params">    </span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Initializes an instance of the GVPGNNModel class with the provided parameters.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Parameters:</span></span><br><span class="line"><span class="string">        - r_max (float): Maximum distance for Bessel basis functions (default: 10.0)</span></span><br><span class="line"><span class="string">        - num_bessel (int): Number of Bessel basis functions (default: 8)</span></span><br><span class="line"><span class="string">        - num_polynomial_cutoff (int): Number of polynomial cutoff basis functions (default: 5)</span></span><br><span class="line"><span class="string">        - num_layers (int): Number of layers in the model (default: 5)</span></span><br><span class="line"><span class="string">        - in_dim (int): Input dimension of the model (default: 1)</span></span><br><span class="line"><span class="string">        - out_dim (int): Output dimension of the model (default: 1)</span></span><br><span class="line"><span class="string">        - s_dim (int): Dimension of the node state embeddings (default: 128)</span></span><br><span class="line"><span class="string">        - v_dim (int): Dimension of the node vector embeddings (default: 16)</span></span><br><span class="line"><span class="string">        - s_dim_edge (int): Dimension of the edge state embeddings (default: 32)</span></span><br><span class="line"><span class="string">        - v_dim_edge (int): Dimension of the edge vector embeddings (default: 1)</span></span><br><span class="line"><span class="string">        - pool (str): Global pooling method to be used (default: &quot;sum&quot;)</span></span><br><span class="line"><span class="string">        - residual (bool): Whether to use residual connections (default: True)</span></span><br><span class="line"><span class="string">        - equivariant_pred (bool): Whether it is an equivariant prediction task (default: False)</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        </span><br><span class="line">        <span class="variable language_">self</span>.r_max = r_max</span><br><span class="line">        <span class="variable language_">self</span>.num_layers = num_layers</span><br><span class="line">        <span class="variable language_">self</span>.equivariant_pred = equivariant_pred</span><br><span class="line">        <span class="variable language_">self</span>.s_dim = s_dim</span><br><span class="line">        <span class="variable language_">self</span>.v_dim = v_dim</span><br><span class="line">        </span><br><span class="line">        activations = (F.relu, <span class="literal">None</span>)</span><br><span class="line">        _DEFAULT_V_DIM = (s_dim, v_dim)</span><br><span class="line">        _DEFAULT_E_DIM = (s_dim_edge, v_dim_edge) </span><br><span class="line"></span><br><span class="line">        <span class="comment"># Node embedding</span></span><br><span class="line">        <span class="variable language_">self</span>.emb_in = torch.nn.Embedding(in_dim, s_dim)</span><br><span class="line">        <span class="variable language_">self</span>.W_v = torch.nn.Sequential(</span><br><span class="line">            gvp.LayerNorm((s_dim, <span class="number">0</span>)),</span><br><span class="line">            gvp.GVP((s_dim, <span class="number">0</span>), _DEFAULT_V_DIM,</span><br><span class="line">                activations=(<span class="literal">None</span>, <span class="literal">None</span>), vector_gate=<span class="literal">True</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Edge embedding</span></span><br><span class="line">        <span class="variable language_">self</span>.radial_embedding = RadialEmbeddingBlock(</span><br><span class="line">            r_max=r_max,</span><br><span class="line">            num_bessel=num_bessel,</span><br><span class="line">            num_polynomial_cutoff=num_polynomial_cutoff,</span><br><span class="line">        )</span><br><span class="line">        <span class="variable language_">self</span>.W_e = torch.nn.Sequential(</span><br><span class="line">            gvp.LayerNorm((<span class="variable language_">self</span>.radial_embedding.out_dim, <span class="number">1</span>)),</span><br><span class="line">            gvp.GVP((<span class="variable language_">self</span>.radial_embedding.out_dim, <span class="number">1</span>), _DEFAULT_E_DIM, </span><br><span class="line">                activations=(<span class="literal">None</span>, <span class="literal">None</span>), vector_gate=<span class="literal">True</span>)</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Stack of GNN layers</span></span><br><span class="line">        <span class="variable language_">self</span>.layers = torch.nn.ModuleList(</span><br><span class="line">            gvp.GVPConvLayer(</span><br><span class="line">                _DEFAULT_V_DIM, _DEFAULT_E_DIM, </span><br><span class="line">                activations=activations, vector_gate=<span class="literal">True</span>,</span><br><span class="line">                residual=residual</span><br><span class="line">            ) </span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(num_layers)</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Global pooling/readout function</span></span><br><span class="line">        <span class="variable language_">self</span>.pool = &#123;<span class="string">&quot;mean&quot;</span>: global_mean_pool, <span class="string">&quot;sum&quot;</span>: global_add_pool&#125;[pool]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.equivariant_pred:</span><br><span class="line">            <span class="comment"># Linear predictor for equivariant tasks using geometric features</span></span><br><span class="line">            <span class="variable language_">self</span>.pred = torch.nn.Linear(s_dim + v_dim * <span class="number">3</span>, out_dim)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># MLP predictor for invariant tasks using only scalar features</span></span><br><span class="line">            <span class="variable language_">self</span>.pred = torch.nn.Sequential(</span><br><span class="line">                torch.nn.Linear(s_dim, s_dim),</span><br><span class="line">                torch.nn.ReLU(),</span><br><span class="line">                torch.nn.Linear(s_dim, out_dim)</span><br><span class="line">            )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, batch</span>):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Edge features</span></span><br><span class="line">        vectors = batch.pos[batch.edge_index[<span class="number">0</span>]] - batch.pos[batch.edge_index[<span class="number">1</span>]]  <span class="comment"># [n_edges, 3]</span></span><br><span class="line">        lengths = torch.linalg.norm(vectors, dim=-<span class="number">1</span>, keepdim=<span class="literal">True</span>)  <span class="comment"># [n_edges, 1]</span></span><br><span class="line">        </span><br><span class="line">        h_V = <span class="variable language_">self</span>.emb_in(batch.atoms)  <span class="comment"># (n,) -&gt; (n, d)</span></span><br><span class="line">        h_E = (</span><br><span class="line">            <span class="variable language_">self</span>.radial_embedding(lengths), </span><br><span class="line">            torch.nan_to_num(torch.div(vectors, lengths)).unsqueeze_(-<span class="number">2</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        h_V = <span class="variable language_">self</span>.W_v(h_V)</span><br><span class="line">        h_E = <span class="variable language_">self</span>.W_e(h_E)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> <span class="variable language_">self</span>.layers:</span><br><span class="line">            h_V = layer(h_V, batch.edge_index, h_E)</span><br><span class="line"></span><br><span class="line">        out = <span class="variable language_">self</span>.pool(gvp._merge(*h_V), batch.batch)  <span class="comment"># (n, d) -&gt; (batch_size, d)</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable language_">self</span>.equivariant_pred:</span><br><span class="line">            <span class="comment"># Select only scalars for invariant prediction</span></span><br><span class="line">            out = out[:,:<span class="variable language_">self</span>.s_dim]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.pred(out)  <span class="comment"># (batch_size, out_dim)</span></span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><p>Below is a complete PyTorch <code>nn.Module</code> subclass implementing a <strong>GVP-GNN</strong> model, based on the paper “Equivariant Graph Neural Networks for 3D Macromolecular Structure.”</p>
+<p>The model uses Geometric Vector Perceptrons (GVPs) for both node and edge embeddings, stacks multiple <code>GVPConvLayer</code> instances for message passing, and supports both equivariant and invariant prediction tasks.</p>
+<p>```python class GVPGNNModel(torch.nn.Module): """ GVP-GNN model from “Equivariant Graph Neural Networks for 3D Macromolecular Structure”. """ def <strong>init</strong>( self, r_max: float = 10.0, num_bessel: int = 8, num_polynomial_cutoff: int = 5, num_layers: int = 5, in_dim=1, out_dim=1, s_dim: int = 128, v_dim: int = 16, s_dim_edge: int = 32, v_dim_edge: int = 1, pool: str = “sum”, residual: bool = True, equivariant_pred: bool = False ): """ Initializes an instance of the GVPGNNModel class with the provided parameters.</p>
+<pre><code>    Parameters:
+    - r_max (float): Maximum distance for Bessel basis functions (default: 10.0)
+    - num_bessel (int): Number of Bessel basis functions (default: 8)
+    - num_polynomial_cutoff (int): Number of polynomial cutoff basis functions (default: 5)
+    - num_layers (int): Number of layers in the model (default: 5)
+    - in_dim (int): Input dimension of the model (default: 1)
+    - out_dim (int): Output dimension of the model (default: 1)
+    - s_dim (int): Dimension of the node state embeddings (default: 128)
+    - v_dim (int): Dimension of the node vector embeddings (default: 16)
+    - s_dim_edge (int): Dimension of the edge state embeddings (default: 32)
+    - v_dim_edge (int): Dimension of the edge vector embeddings (default: 1)
+    - pool (str): Global pooling method to be used (default: &quot;sum&quot;)
+    - residual (bool): Whether to use residual connections (default: True)
+    - equivariant_pred (bool): Whether it is an equivariant prediction task (default: False)
+    &quot;&quot;&quot;
+    super().__init__()
+    
+    self.r_max = r_max
+    self.num_layers = num_layers
+    self.equivariant_pred = equivariant_pred
+    self.s_dim = s_dim
+    self.v_dim = v_dim
+    
+    activations = (F.relu, None)
+    _DEFAULT_V_DIM = (s_dim, v_dim)
+    _DEFAULT_E_DIM = (s_dim_edge, v_dim_edge) 
+
+    # Node embedding
+    self.emb_in = torch.nn.Embedding(in_dim, s_dim)
+    self.W_v = torch.nn.Sequential(
+        gvp.LayerNorm((s_dim, 0)),
+        gvp.GVP((s_dim, 0), _DEFAULT_V_DIM,
+            activations=(None, None), vector_gate=True)
+    )
+
+    # Edge embedding
+    self.radial_embedding = RadialEmbeddingBlock(
+        r_max=r_max,
+        num_bessel=num_bessel,
+        num_polynomial_cutoff=num_polynomial_cutoff,
+    )
+    self.W_e = torch.nn.Sequential(
+        gvp.LayerNorm((self.radial_embedding.out_dim, 1)),
+        gvp.GVP((self.radial_embedding.out_dim, 1), _DEFAULT_E_DIM, 
+            activations=(None, None), vector_gate=True)
+    )
+    
+    # Stack of GNN layers
+    self.layers = torch.nn.ModuleList(
+        gvp.GVPConvLayer(
+            _DEFAULT_V_DIM, _DEFAULT_E_DIM, 
+            activations=activations, vector_gate=True,
+            residual=residual
+        ) 
+        for _ in range(num_layers)
+    )
+    
+    # Global pooling/readout function
+    self.pool = &#123;&quot;mean&quot;: global_mean_pool, &quot;sum&quot;: global_add_pool&#125;[pool]
+
+    if self.equivariant_pred:
+        # Linear predictor for equivariant tasks using geometric features
+        self.pred = torch.nn.Linear(s_dim + v_dim * 3, out_dim)
+    else:
+        # MLP predictor for invariant tasks using only scalar features
+        self.pred = torch.nn.Sequential(
+            torch.nn.Linear(s_dim, s_dim),
+            torch.nn.ReLU(),
+            torch.nn.Linear(s_dim, out_dim)
+        )
+
+def forward(self, batch):
+
+    # Edge features
+    vectors = batch.pos[batch.edge_index[0]] - batch.pos[batch.edge_index[1]]  # [n_edges, 3]
+    lengths = torch.linalg.norm(vectors, dim=-1, keepdim=True)  # [n_edges, 1]
+    
+    h_V = self.emb_in(batch.atoms)  # (n,) -&gt; (n, d)
+    h_E = (
+        self.radial_embedding(lengths), 
+        torch.nan_to_num(torch.div(vectors, lengths)).unsqueeze_(-2)
+    )
+
+    h_V = self.W_v(h_V)
+    h_E = self.W_e(h_E)
+
+    for layer in self.laye</code></pre>
 
     </div>
 
@@ -273,8 +357,10 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/LJ-torch-nn-Module/" rel="tag"># LJ_torch_nn_Module</a>
-              <a href="/tags/instance/" rel="tag"># instance</a>
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+              <a href="/tags/learning-journey/" rel="tag"># learning-journey</a>
+              <a href="/tags/nn-module/" rel="tag"># nn-module</a>
+              <a href="/tags/gvp-gnn/" rel="tag"># gvp-gnn</a>
           </div>
 
         
@@ -286,8 +372,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/02/11/Learning-Journey-for-torch/LJ_torch_geometric_nn_Message_Passing/" rel="next" title="LJ torch geometric Message Passing">
-                  LJ torch geometric Message Passing <i class="fa fa-angle-right"></i>
+                <a href="/2026/02/11/Learning-Journey-for-torch/LJ_torch_geometric_nn_Message_Passing/" rel="next" title="Message Passing in PyTorch Geometric">
+                  Message Passing in PyTorch Geometric <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
