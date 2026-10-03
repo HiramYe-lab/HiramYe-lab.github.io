@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"devrech.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Lecture notes on Measure Theory (程士宏) -- Chapter 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Measurable Spaces and Measurable Mappings - Part 1">
+<meta property="og:url" content="https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/index.html">
+<meta property="og:site_name" content="Hiram Ye&#39;s Blog">
+<meta property="og:description" content="Lecture notes on Measure Theory (程士宏) -- Chapter 1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-29T06:22:36.000Z">
+<meta property="article:modified_time" content="2026-09-30T11:26:05.995Z">
+<meta property="article:author" content="Hiram Ye">
+<meta property="article:tag" content="dev, software, programming, machine learning, AI, data science">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/","path":"2026/09/29/MeasureTheory/MT_C1_P1/","title":"Measurable Spaces and Measurable Mappings - Part 1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Measurable Spaces and Measurable Mappings - Part 1 | Hiram Ye's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"/js/mathjax-boot.js"}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hiram Ye's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sets-and-Operations"><span class="nav-number">1.</span> <span class="nav-text">Sets and Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Operations"><span class="nav-number">1.1.</span> <span class="nav-text">Operations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limit"><span class="nav-number">1.2.</span> <span class="nav-text">Limit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection-of-Sets-Class-of-Sets"><span class="nav-number">2.</span> <span class="nav-text">Collection of Sets (Class of Sets)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MATHJAX33-system"><span class="nav-number">2.1.</span> <span class="nav-text">$\pi$-system</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semi-ring"><span class="nav-number">2.2.</span> <span class="nav-text">Semi-ring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ring"><span class="nav-number">2.3.</span> <span class="nav-text">Ring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Field-Algebra"><span class="nav-number">2.4.</span> <span class="nav-text">Field (Algebra)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monotone-class"><span class="nav-number">2.5.</span> <span class="nav-text">Monotone class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MATHJAX179-system-Dynkin-system"><span class="nav-number">2.6.</span> <span class="nav-text">$\lambda$-system (Dynkin system)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MATHJAX185-field-MATHJAX186-algebra"><span class="nav-number">2.7.</span> <span class="nav-text">$\sigma$-field ($\sigma$-algebra)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MATHJAX257-ring"><span class="nav-number">2.8.</span> <span class="nav-text">$\sigma$-ring</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hiram Ye</p>
+  <div class="site-description" itemprop="description">A blog about software development, data, AI, and the journey of learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DevRecH" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DevRecH" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hiram Ye">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hiram Ye's Blog">
+      <meta itemprop="description" content="A blog about software development, data, AI, and the journey of learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Measurable Spaces and Measurable Mappings - Part 1 | Hiram Ye's Blog">
+      <meta itemprop="description" content="Lecture notes on Measure Theory (程士宏) -- Chapter 1">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Measurable Spaces and Measurable Mappings - Part 1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-09-29 14:22:36" itemprop="dateCreated datePublished" datetime="2026-09-29T14:22:36+08:00">2026-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-09-30 19:26:05" itemprop="dateModified" datetime="2026-09-30T19:26:05+08:00">2026-09-30</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Lecture notes on Measure Theory (程士宏) -- Chapter 1</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>These notes record my self-study of measure theory, both for my own review and to work through the arguments carefully.</p>
+<h2 id="Sets-and-Operations"><a href="#Sets-and-Operations" class="headerlink" title="Sets and Operations"></a>Sets and Operations</h2><ul>
+<li><strong>Indicator function</strong></li>
+</ul>
+<p>$$
+I_A(x)=\begin{cases}
+1, &x\in A,\\
+0, &x\notin A.
+\end{cases}
+$$</p>
+<ul>
+<li><p><strong>Complement</strong>: $A^c\overset{\text{def}}{=}\{ x:x\notin A \}$.</p>
+</li>
+<li><p><strong>Relation between Sets</strong> (<em>A is contained in B</em> or <em>B includes A</em> or <em>A is a subset of B</em>)
+$$
+\{x\in A\Rightarrow x\in B\} \Leftrightarrow A\subset B
+$$</p>
+</li>
+</ul>
+<h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><ul>
+<li>$A\bigcup B\overset{\text{def}}{=}\{ x:x\in A \text{ or } x\in B \}$. <code>(Union)</code></li>
+<li>$A\bigcap B\overset{\text{def}}{=} \{ x: x\in A \text{ and }x \in B \}$. <code>(Intersection)</code></li>
+<li>$A\backslash B\overset{\text{def}}{=} \{ x: x\in A\text{ and } x\notin B \}$. <code>(Difference)</code></li>
+<li>$A\Delta B\overset{\text{def}}{=} (A\backslash B)\bigcup (B\backslash A)$. <code>(Symmetric Difference)</code><ul>
+<li>$A\Delta B=B\Delta A$: The region <strong>that A and B do not share</strong>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Union</strong> and <strong>intersection</strong> are <em><strong>associative</strong></em> and <em><strong>commutative</strong></em>. They also satisfy the <em><strong>distributive laws</strong></em>:
+$$
+\begin{aligned}
+\plr{A\bcup B}\bcap C &= \plr{A\bcap C}\bcup \plr{B\bcap C},\\
+\plr{A\bcap B}\bcup C &= \plr{A\bcup C}\bcap \plr{B\bcup C}.
+\end{aligned}
+$$</p>
+<p>The same definitions extend to an arbitrary index set:
+$$
+\begin{aligned}
+\bcup_{t\in T}A_t&\def\blr{x:\exists t\in T, x\in A_t},\\
+\bcap_{t\in T}A_t&\def\blr{x:\forall t\in T, x\in A_t\ }.
+\end{aligned}
+$$
+In particular, if $A_s\bcap A_t=\varnothing$ for all $s\neq t$ in $T$, the collection $\blr{A_t:t\in T}$ is said to be pairwise disjoint.</p>
+<h3 id="Limit"><a href="#Limit" class="headerlink" title="Limit"></a>Limit</h3><p>Consider a sequence of sets $\blr{A_n, n\in\mathbb N}$ with $A_n\subset A_{n+1}$. The sequence is then called <em><strong>non-decreasing</strong></em>, written as $A_n\uparrow$, and its <em><strong>limit</strong></em> is $\lim_{n\to \infty}A_n\def \bcup_{n=1}^\infty A_n$. Dually, the sequence of $A_n\supset A_{n+1}$ is called <em><strong>non-increasing</strong></em>, denoted as $A_n\downarrow$, and its <em><strong>limit</strong></em> becomes $\lim_{n\to\infty}A_n\def \bcap_{n=1}^{\infty}A_n$.</p>
+<p>Sequences of either kind are called <strong>monotone</strong>. By definition, every monotone sequence of sets has a <em>limit</em>. Two further limits are the <em><strong>lower</strong></em> and <em><strong>upper limits</strong></em>:
+$$
+\liminf_{n\to\infty} A_n\def \bcup_{n=1}^{\infty}\bcap_{k=n}^{\infty}A_k,
+\quad\quad\quad 
+\limsup_{n\to\infty}A_n\def \bcap_{n=1}^{\infty}\bcup_{k=n}^{\infty} A_k.
+$$</p>
+<ul>
+<li><code>Lower Limit</code>: The set of elements that appear in <em><strong>all</strong></em> sets from some index $k$.</li>
+<li><code>Upper Limit</code>: The set of elements that belong to <em><strong>infinitely many</strong></em> of the sets $A_n$.</li>
+</ul>
+<p>Normally, <em><strong>the lower limit is contained in the upper limit</strong></em>, i.e. $\liminf_{n\to\infty} A_n\subset  \limsup_{n\to\infty}A_n$. If the two coincide, the limit exists and is given by
+$$
+\lim_{n\to\infty} A_n\def \liminf_{n\to\infty} A_n=\limsup_{n\to\infty} A_n.
+$$</p>
+<h2 id="Collection-of-Sets-Class-of-Sets"><a href="#Collection-of-Sets-Class-of-Sets" class="headerlink" title="Collection of Sets (Class of Sets)"></a>Collection of Sets (Class of Sets)</h2><p><em>A collection of sets is a set where its elements are sets.</em> Some special collections of sets play a significant role as</p>
+<h3 id="MATHJAX33-system"><a href="#MATHJAX33-system" class="headerlink" title="$\pi$-system"></a>$\pi$-system</h3><p>$\mathscr P$ is said to be a <em>$\pi$-system</em> on $X$ if it is <em><strong>closed</strong></em> under <em>intersection</em>:
+$$
+A\bcap B\in \mathscr P,\ \forall A,B\in\mathscr P.
+$$</p>
+<ul>
+<li><p>$\mathscr P_{\mathbb R}\def \blr{(-\infty, a]:a\in\mathbb R}$ is a $\pi$-system on $\mathbb R$.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>For any $A, B\in\mathscr P$, there exist $a, b\in\mathbb R$ such that $A=(-\infty, a]$ and $B=(-\infty, b]$. Without loss of generality, assume $a \le b$. Then, $A\bcap B=(-\infty, a]\bcap (-\infty, b]=(-\infty, a]=A\in\mathscr P_{\mathbb R}$. Therefore, $\mathscr P_{\mathbb R}$ is a $\pi$-system.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>$\blr{(a,b):a,b\in\mathbb R}, \blr{(a,b]:a,b\in\mathbb R}, \blr{[a,b):a,b\in\mathbb R},\blr{[a,b]:a,b\in\mathbb R}$ are $\pi$-systems on $\mathbb R$.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>These collections of sets are denoted as $\mathscr P_1, \mathscr P_2,\mathscr P_3,\mathscr P_4$, respectively.</p>
+<p>In $\mathscr P_1$, $A=(a_1,a_2)\in\mathscr P_1$ and $B=(b_1,b_2)\in\mathscr P_1$. There are several cases to be considered.</p>
+<ul>
+<li>$b_2\le a_1$ or $b_1\ge a_2$: evidently $A\bcap B=\varnothing\in\mathscr P_1$.</li>
+<li>$b_2\gt a_1$ and $b_1\lt a_2$: $A\bcap B=\plr{\max(a_1,b_1), \min(a_2,b_2)}\in\mathscr P_1$.
+In this case the interval is indeed <em><strong>nonempty</strong></em>: since $\max(a_1,b_1)$ is either $a_1$ or $b_1$, it suffices to check both.
+If $\max(a_1,b_1)=a_1$, then $a_1\lt a_2$ (as $A$ is an open interval) and $a_1\lt b_2$ (by assumption), so $a_1\lt\min(a_2,b_2)$.
+If $\max(a_1,b_1)=b_1$, then $b_1\lt b_2$ (as $B$ is an open interval) and $b_1\lt a_2$ (by assumption), so $b_1\lt\min(a_2,b_2)$.
+Hence $\max(a_1,b_1)\lt\min(a_2,b_2)$, and the intersection is a nonempty open interval.</li>
+</ul>
+<p>Therefore, $\mathscr P_1$ is a $\pi$-system.</p>
+<p>The same argument shows that $\mathscr P_2, \mathscr P_3,\mathscr P_4$ are all $\pi$-systems.<div align="right">$\square$</div></p>
+
+    </div>
+</div></li>
+</ul>
+<h3 id="Semi-ring"><a href="#Semi-ring" class="headerlink" title="Semi-ring"></a>Semi-ring</h3><p>A <strong>$\pi$-system</strong> $\mathscr L$ is said to be a <em>semi-ring</em> if $\forall A,B\in\mathscr L$ with $A\supset B$, there exist <em><strong>finitely many pairwise disjoint</strong></em> sets $\blr{C_k\in\mathscr L,k=1,\dots,n}$ such that 
+$$
+A\backslash B=\bcup_{k=1}^nC_k.
+$$</p>
+<ul>
+<li><p>$\mathscr L_{\mathbb R}\def \blr{(a,b]:a,b\in\mathbb R}$ is a semi-ring on $\mathbb R$.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>As discussed above, $\mathscr L_{\mathbb R}$ is a $\pi$-system on $\mathbb R$. Assume we have $(a_1,a_2]$ and $(b_1,b_2]$.</p>
+<ul>
+<li>$b_2\le a_1$ or $a_2\le b_1$: $(a_1,a_2]\backslash (b_1,b_2]=(a_1,a_2]$.</li>
+<li>$a_1\lt b_2$ and $a_2\gt b_1$: <ul>
+<li>$b_1\le a_1$ and $b_2\le a_2$: $(a_1,a_2]\backslash (b_1,b_2]=(b_2,a_2]$.</li>
+<li>$b_1\le a_1$ and $b_2>a_2$: $(a_1,a_2]\backslash (b_1,b_2]=\varnothing$.</li>
+<li>$b_1>a_1$ and $b_2\le a_2$: $(a_1,a_2]\backslash (b_1,b_2]=(a_1,b_1]\bcup (b_2,a_2]$.</li>
+<li>$b_1>a_1$ and $b_2>a_2$: $(a_1,a_2]\backslash (b_1,b_2]=(a_1,b_1]$.</li>
+</ul>
+</li>
+</ul>
+<p>Therefore, $\mathscr L_{\mathbb R}$ is a semi-ring.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>$X=\blr{x_1,\dots,x_n}$ has a finite number of elements. $\mathscr P=\blr{\blr{x_1},\dots,\blr{x_n}}$ is a $\pi$-system and semi-ring.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>For any $\blr{x_i},\blr{x_j}\in\mathscr P$, $\blr{x_i}\bcap\blr{x_j}$ is $\blr{x_i}$ for $i=j$ and $\varnothing$ otherwise. Therefore, $\mathscr P$ is a $\pi$-system.</p>
+<p>$\forall \blr{x_i},\blr{x_j}\in\mathscr P$, $\blr{x_i}\backslash \blr{x_j}=\blr{x_i}$ for $i\neq j$ and $\varnothing$ for $i=j$; in either case it lies in $\mathscr P$. Thus, $\mathscr P$ is a semi-ring.<div align="right">$\square$</div></p>
+
+    </div>
+</div></li>
+</ul>
+<h3 id="Ring"><a href="#Ring" class="headerlink" title="Ring"></a>Ring</h3><p>$\mathscr R$ is said to be a ring if it is <em><strong>closed</strong></em> under <em>union</em> and <em>difference</em>:
+$$
+A,B\in\mathscr R\Rightarrow A\bcup B,A\backslash B\in\mathscr R.
+$$</p>
+<ul>
+<li><p>$\mathscr R_{\mathbb R}\def \bcup_{n=1}^{\infty}\blr{\bcup_{k=1}^{n}(a_k,b_k]:a_k,b_k\in\mathbb R}$ is a ring on $\mathbb R$.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>  Proof.</p>
+<p>  Any $ A, B\in\mathscr R_{\mathbb R}$ can be rewritten as $A=\bcup_{k=1}^{K}(a_k,b_k]$ and $B=\bcup_{j=1}^{J}(c_j,d_j]$.</p>
+<p>  The union of $A$ and $B$ is given by
+$$
+A\bcup B=\plr{ \bcup_{k=1}^{K}(a_k,b_k] } \bcup \plr{\bcup_{j=1}^{J}(c_j,d_j]},
+$$
+  which can also be written by the union of $K+J$ intervals. Therefore, $A\bcup B\in\mathscr R_{\mathbb R}$. The difference is given as
+$$
+\begin{aligned}
+A\backslash B&=\plr{ \bcup_{k=1}^{K}(a_k,b_k] } \backslash \plr{\bcup_{j=1}^{J}(c_j,d_j]},\\
+&= \bcup_{k=1}^{K}\plr{(a_k,b_k]  \backslash \plr{\bcup_{j=1}^{J}(c_j,d_j]}},\\
+&= \bcup_{k=1}^{K} \plr{\bcap_{j=1}^{J} (a_k,b_k]  \backslash (c_j,d_j]}.\\
+\end{aligned}
+$$
+  Since $\mathscr L_{\mathbb R}$ is a semi-ring, there exist non-overlapping intervals $(x_{k,j,l}, y_{k,j,l}]$ such that $(a_k,b_k]\backslash (c_j,d_j]=\bcup_{l=1}^{L_{k,j}}(x_{k,j,l}, y_{k,j,l}]$, yielding
+$$
+\begin{aligned}
+A\backslash B&=\bcup_{k=1}^{K} \bcap_{j=1}^{J} \bcup_{l=1}^{L_{k,j}}(x_{k,j,l}, y_{k,j,l}]\\
+&=\bcup_{k=1}^{K} \bcup_{\begin{subarray}{c}l_1=1,\dots,L_{k,1}\\l_2=1,\dots,L_{k,2}\\\dots \\ l_J=1,\dots,L_{k,J} \end{subarray}} \plr{ (x_{k,1,l_1}, y_{k,1,l_1}] \bcap (x_{k,2,l_2}, y_{k,2,l_2}]\bcap\dots\bcap (x_{k,J,l_J}, y_{k,J,l_J}]  } .
+\end{aligned}
+$$
+  Since $\mathscr L_{\mathbb R}$ is a $\pi$-system, $\plr{ (x_{k,1,l_1}, y_{k,1,l_1}] \bcap (x_{k,2,l_2}, y_{k,2,l_2}]\bcap\dots\bcap (x_{k,J,l_J}, y_{k,J,l_J}]  }$ can be rewritten as $(\hat x_{k,l_1,\dots,l_J},\hat y_{k,l_1,\dots,l_J}]$. Therefore, $A\backslash B\in\mathscr R_{\mathbb R}$.</p>
+<p>  Hence, $\mathscr R_{\mathbb R}$ is a ring.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>$X$ is finite and its power set is $\mathscr T$. $\mathscr T$ is a ring. <code>(Obviously)</code></p>
+</li>
+</ul>
+<h3 id="Field-Algebra"><a href="#Field-Algebra" class="headerlink" title="Field (Algebra)"></a>Field (Algebra)</h3><p>A $\pi$-system $\mathscr A$ is said to be a <em><strong>field</strong></em> if $X\in\mathscr A$, $A\in\mathscr A\Rightarrow A^c\in\mathscr A$ holds.</p>
+<p>It follows from the definitions above that <em>a semi-ring is a $\pi$-system</em>, <em>a ring is a semi-ring</em>, and <em>a field is a ring</em>.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<ul>
+<li><p>A semi-ring must be a $\pi$-system. <code>(Obviously)</code></p>
+</li>
+<li><p>A ring must be a semi-ring.</p>
+<ul>
+<li><p>Given a ring $\mathscr R$, it has $A,B\in\mathscr R\Rightarrow A\backslash B, A\bcup B\in\mathscr R$.</p>
+<p>Since $A\backslash B\in\mathscr R$, it remains to show that $\mathscr R$ is a $\pi$-system.</p>
+<p>$A\bcap B=A\backslash\plr{A\backslash B}$. Thus, $A\backslash B\in\mathscr R$, followed by $A\bcap B\in\mathscr R$. Hence, $\mathscr R$ is a $\pi$-system.</p>
+<p>Thus, $\mathscr R$ is a semi-ring.</p>
+</li>
+</ul>
+</li>
+<li><p>A field must be a ring.</p>
+<ul>
+<li><p>Given a field $\mathscr F$, we have  $A,B,X\in\mathscr F\Rightarrow A^c,B^c,A\bcap B\in\mathscr F$.</p>
+<p>$A\backslash B=A\bcap B^c\in\mathscr F$ and $A\bcup B=\plr{A^c\bcap B^c}^c\in\mathscr F$ yield that $\mathscr F$ is a ring.<div align="right">$\square$</div></p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</div>
+
+<h3 id="Monotone-class"><a href="#Monotone-class" class="headerlink" title="Monotone class"></a>Monotone class</h3><p>A collection of sets, say $\mathscr M$,  is said to be a <em><strong>monotone class</strong></em> if all <strong>monotone sequences</strong> $\blr{A_n,n=1,2,\dots}$ have a limit in $\mathscr M$.</p>
+<h3 id="MATHJAX179-system-Dynkin-system"><a href="#MATHJAX179-system-Dynkin-system" class="headerlink" title="$\lambda$-system (Dynkin system)"></a>$\lambda$-system (Dynkin system)</h3><p>A collection of sets, say $\mathscr L$, is said to be a <em><strong>$\lambda$-system</strong></em> if it satisfies the following conditions:</p>
+<ul>
+<li>$X\in\mathscr L$</li>
+<li>$A,B\in\mathscr L, A\supset B\Rightarrow A\backslash B\in\mathscr L$</li>
+<li>$A_n\in\mathscr L,A_n\uparrow\Rightarrow \bcup_{n=1}^{\infty}A_n\in\mathscr L$</li>
+</ul>
+<h3 id="MATHJAX185-field-MATHJAX186-algebra"><a href="#MATHJAX185-field-MATHJAX186-algebra" class="headerlink" title="$\sigma$-field ($\sigma$-algebra)"></a>$\sigma$-field ($\sigma$-algebra)</h3><p>A collection of sets, say $\mathscr F$, is said to be a <em><strong>$\sigma$-field</strong></em> if it satisfies the following conditions:</p>
+<ul>
+<li>$X\in\mathscr F$</li>
+<li>$A\in\mathscr F\Rightarrow A^c\in\mathscr F$</li>
+<li>$A_n\in\mathscr F,n=1,2,\dots\Rightarrow \bcup_{n=1}^{\infty}A_n\in\mathscr F$</li>
+</ul>
+<p>The smallest $\sigma$-algebra is $\blr{X,\varnothing}$, and the largest $\sigma$-algebra is $\mathscr T\def \blr{A:A\subset X}$.</p>
+<p>It follows from the definitions above that <em>a $\lambda$-system is a monotone class</em>, and <em>a $\sigma$-algebra is a $\lambda$-system</em>.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<ul>
+<li><p>A $\lambda$-system is a monotone class</p>
+<p>Given a $\lambda$-system $\mathscr L$, we need to prove all monotone sequences have their limit.</p>
+<p>Assume $\blr{A_n,n=1,2,\dots}$ is a monotonically increasing sequence in $\mathscr L$. Based on the definition of $\lambda$-systems, the limit exists.</p>
+<p>Conversely, given a monotonically decreasing sequence $\blr{B_n,n=1,2,\dots}$, we have $B_n^c\in\mathscr L$ and $\blr{B_n^c, n=1,2,\dots}$ is monotonically increasing so that it has a limit, namely $\bcup_{n=1}^{\infty} B_n^c\in\mathscr L$. Then, $\bcap_{n=1}^{\infty} B_n=\plr{\bcup_{n=1}^{\infty}B_n^c}^c\in\mathscr L$.</p>
+<p>Therefore, $\mathscr L$ is a monotone class.</p>
+</li>
+<li><p>A $\sigma$-algebra is a $\lambda$-system</p>
+<p>Given a $\sigma$-algebra $\mathscr F$, $X\in\mathscr F$ and $A\backslash B=A\bcap B^c=\plr{A^c\bcup B}^c\in\mathscr F$ for $A\supset B$.</p>
+<p>The last condition of $\lambda$-systems is guaranteed easily. Therefore, $\mathscr F$ is a $\lambda$-system.<div align="right">$\square$</div></p>
+</li>
+</ul>
+
+    </div>
+</div>
+
+<p>A <em><strong>measurable space</strong></em> is denoted by $\plr{X,\mathscr F}$, where $\mathscr F$ is a $\sigma$-field on $X$.</p>
+<p><em><strong>A monotone class that is also a field is a $\sigma$-algebra.</strong></em></p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Given a class $\mathscr M$ that is both a monotone class and a field, we have $X\in\mathscr M$, $A^c\in\mathscr M$ for every $A\in\mathscr M$.</p>
+<p>For a sequence of sets $\blr{A_n,n=1,2,\dots}$, define $B_n=\bcup_{k=1}^nA_k$. $\blr{B_n,n=1,2,\dots}$ is a monotonically increasing sequence, and it has its limit, i.e. $\bcup_{n=1}^{\infty} B_n\in\mathscr M$. On the other hand, $\bcup_{n=1}^{\infty} A_n=\bcup_{n=1}^{\infty} B_n$ yields $\bcup_{n=1}^{\infty} A_n\in\mathscr M$.</p>
+<p>Therefore, $\mathscr M$ is a $\sigma$-algebra.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+
+<p><em><strong>A $\lambda$-system that is also a $\pi$-system is a $\sigma$-algebra.</strong></em></p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Given a class $\mathscr L$ that is both a  $\lambda$-system and a $\pi$-system, we have $X\in\mathscr L$, $A^c=X\backslash A\in\mathscr L$ for any $A\in\mathscr L$.</p>
+<p>For a sequence of sets $\blr{A_n,n=1,2,\dots}$ with $A_n\in\mathscr L$, define $B_n=\bcup_{k=1}^n A_k$ such that $B_n\uparrow$. Then, $\bcup_{n=1}^{\infty} A_n=\bcup_{n=1}^{\infty} B_n\in\mathscr L$. </p>
+<p>Therefore, $\mathscr L$ is a $\sigma$-algebra.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+
+<h3 id="MATHJAX257-ring"><a href="#MATHJAX257-ring" class="headerlink" title="$\sigma$-ring"></a>$\sigma$-ring</h3><p>A collection of sets $\mathscr R$ is said to be a <em><strong>$\sigma$-ring</strong></em> if 
+$$
+\begin{align}
+A, B\in\mathscr R&\Rightarrow A\backslash B\in\mathscr R,\\
+A_n\in\mathscr R,n=1,2,\dots&\Rightarrow \bcup_{n=1}^{\infty}A_n\in\mathscr R.
+\end{align}
+$$
+<em>Note: A $\sigma$-ring including $X$ is a $\sigma$-field.</em></p>
+<link rel="stylesheet" href="/css/folder.css" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/06/14/hello-world/" rel="prev" title="Hello, World">
+                  <i class="fa fa-angle-left"></i> Hello, World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Hiram Ye</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/DevRecH" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="/js/fold-pjax-fix.js" defer></script>
+
+</body>
+</html>
