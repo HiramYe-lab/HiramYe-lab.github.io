@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"devrech.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Lecture notes on CIE6002 L01 Matrix Analysis, based on the instructor&#39;s course textbook (not a commercial text)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 1: Algebraic and Analytic Structures - Part 1">
+<meta property="og:url" content="https://devrech.github.io/2026/10/07/MatrixAnalysis/MA_C1_P1/index.html">
+<meta property="og:site_name" content="Hiram Ye&#39;s Blog">
+<meta property="og:description" content="Lecture notes on CIE6002 L01 Matrix Analysis, based on the instructor&#39;s course textbook (not a commercial text)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-07T12:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-07T08:02:24.147Z">
+<meta property="article:author" content="Hiram Ye">
+<meta property="article:tag" content="dev, software, programming, machine learning, AI, data science">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://devrech.github.io/2026/10/07/MatrixAnalysis/MA_C1_P1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://devrech.github.io/2026/10/07/MatrixAnalysis/MA_C1_P1/","path":"2026/10/07/MatrixAnalysis/MA_C1_P1/","title":"Chapter 1: Algebraic and Analytic Structures - Part 1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Chapter 1: Algebraic and Analytic Structures - Part 1 | Hiram Ye's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"/js/mathjax-boot.js"}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hiram Ye's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>Docs</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Groups-Rings-and-Fields"><span class="nav-number">1.</span> <span class="nav-text">Groups, Rings and Fields</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Operation"><span class="nav-number">1.1.</span> <span class="nav-text">Binary Operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Group"><span class="nav-number">1.2.</span> <span class="nav-text">Group</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Examples"><span class="nav-number">1.2.1.</span> <span class="nav-text">Examples</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ring"><span class="nav-number">1.3.</span> <span class="nav-text">Ring</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Examples-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Examples</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Field"><span class="nav-number">1.4.</span> <span class="nav-text">Field</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Examples-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">Examples</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hiram Ye</p>
+  <div class="site-description" itemprop="description">A blog about software development, data, AI, and the journey of learning.</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/DevRecH" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;DevRecH" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://devrech.github.io/2026/10/07/MatrixAnalysis/MA_C1_P1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hiram Ye">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hiram Ye's Blog">
+      <meta itemprop="description" content="A blog about software development, data, AI, and the journey of learning.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Chapter 1: Algebraic and Analytic Structures - Part 1 | Hiram Ye's Blog">
+      <meta itemprop="description" content="Lecture notes on CIE6002 L01 Matrix Analysis, based on the instructor&#39;s course textbook (not a commercial text)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Chapter 1: Algebraic and Analytic Structures - Part 1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-10-07 20:00:00 / Modified: 16:02:24" itemprop="dateCreated datePublished" datetime="2026-10-07T20:00:00+08:00">2026-10-07</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Lecture notes on CIE6002 L01 Matrix Analysis, based on the instructor's course textbook (not a commercial text)</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>These notes record my study of matrix analysis for <strong>CIE6002</strong>, based on the instructor&#39;s own course textbook rather than any commercial text. They are written both for my own review and to work through the arguments carefully.</p>
+<h2 id="Groups-Rings-and-Fields"><a href="#Groups-Rings-and-Fields" class="headerlink" title="Groups, Rings and Fields"></a>Groups, Rings and Fields</h2><h3 id="Binary-Operation"><a href="#Binary-Operation" class="headerlink" title="Binary Operation"></a>Binary Operation</h3><p>A <em><strong>binary operation</strong></em> $\circ$ on a set $\mathcal S$ is a map $\circ:\mathcal S\times \mathcal S\rightarrow \mathcal S$; the image of $(a,b)$ is written as $a\circ b$.</p>
+<h3 id="Group"><a href="#Group" class="headerlink" title="Group"></a>Group</h3><p>A non-empty set $\mathcal G$ with a <strong>binary operation</strong> $\circ$, denoted as $(\mathcal G,\circ)$, is said to be a <em><strong>group</strong></em> if</p>
+<ul>
+<li>$\forall a,b,c\in\mathcal G, (a\circ b)\circ c=a\circ(b\circ c)$. <code>(associativity)</code></li>
+<li>$\exists e\in\mathcal G,\forall a\in\mathcal G, a\circ e=e\circ a=a$. <code>(existence of identity)</code></li>
+<li>$\forall a\in\mathcal G,\exists x\in\mathcal G,a\circ x=x\circ a=e$. <code>(existence of inverse)</code></li>
+</ul>
+<p><em>Note: the identity and inverse elements are <strong>unique</strong>.</em> </p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>(uniqueness of the identity) - Let $\mathcal G$ be a group and let $e_1,e_2$ be two of its identity elements.</p>
+<p>Then, $e_1=e_1\circ e_2=e_2$, so the identity element is unique.</p>
+<p>(uniqueness of the inverse) - Let $a\in\mathcal G$ and let $x_1,x_2$ be two of its inverses.</p>
+<p>Then, $x_1=x_1\circ e=x_1\circ\plr{a\circ x_2}=\plr{x_1\circ a}\circ x_2=e\circ x_2=x_2$, so the inverse element is unique.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+
+<p><em><strong>Abelian</strong></em> - A group $(\mathcal G,\circ)$ is said to be <strong>abelian</strong> if $a\circ b=b\circ a, \forall a,b\in\mathcal G$.</p>
+<p><em><strong>Subgroup</strong></em> - A subset of a group $(\mathcal G,\circ)$ is said to be a <strong>subgroup</strong> if it is itself a <strong>group</strong> under $\circ$.</p>
+<ul>
+<li>A subgroup of an <em>abelian</em> group is also <em>abelian</em>.</li>
+</ul>
+<h4 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h4><ul>
+<li><p>Let $\R^{n\times m}$ denote the set of $n\times m$ real matrices. Then, $(\R^{n\times m}, +)$ is an abelian group: the identity is the zero matrix, and the inverse of each matrix is its negation. Similarly, $(\C^{n\times m}, +)$, the set of $n\times m$ complex matrices, is an abelian group, with the zero matrix as the identity and the negation as the inverse.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>In $\R^{n\times m}$, $+$ is a binary operation. For $\mathbf a,\mathbf b,\mathbf c\in\R^{n\times m}$, $\mathbf a+\mathbf b+\mathbf c=\mathbf a+\plr{\mathbf b+\mathbf c}$ holds. Let $\mathbf 0$ denote the zero matrix; then, $\mathbf a+\mathbf 0=\mathbf 0+\mathbf a=\mathbf a$, and $\mathbf a+\plr{-\mathbf a}=\mathbf 0$ shows that the inverse of $\mathbf a$ is its negation. Therefore, $(\R^{n\times m},+)$ is a group. Moreover, $\mathbf a+\mathbf b=\mathbf b+\mathbf a$ for all $\mathbf a,\mathbf b\in\R^{n\times m}$, so $(\R^{n\times m},+)$ is an abelian group.</p>
+<p>Similarly, $(\C^{n\times m},+)$ is an abelian group.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>Let $\GL(n,\R)$ and $\GL(n,\C)$ denote the sets of $n\times n$ <strong>nonsingular</strong> real and complex matrices, respectively. Then, $(\GL(n,\R),\times)$ and $(\GL(n,\C),\times)$ are groups: in both groups, the identity element is the identity matrix and the inverse is the usual matrix inverse. These groups are called the <em><strong>general linear groups</strong></em>.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Given $\mathbf A,\mathbf B\in\GL(n,\R)$, there exist $\mathbf X,\mathbf Y\in\R^{n\times n}$ such that $\mathbf{AX}=\mathbf{XA}=\mathbf I$ and $\mathbf{BY}=\mathbf{YB}=\mathbf I$. Then, $\plr{\mathbf{AB}}\plr{\mathbf{YX}}=\mathbf A\plr{\mathbf{BY}}\mathbf X=\mathbf A\mathbf X=\mathbf I$ and $\plr{\mathbf{YX}}\plr{\mathbf{AB}}=\mathbf Y\plr{\mathbf{XA}}\mathbf B=\mathbf Y\mathbf B=\mathbf I$ yield that $\mathbf{AB}\in\GL(n,\R)$. Therefore, $\times$ is a binary operation on $\GL(n,\R)$.</p>
+<p>Evidently, $\mathbf I$ is the identity element, since $\mathbf{AI}=\mathbf{IA}=\mathbf A$ for every $\mathbf A$ in the set, and the inverse of each $\mathbf A$ is just its usual matrix inverse. The associativity holds as well. Therefore, $\GL(n,\R)$ is a group.</p>
+<p>Similarly, $\GL(n,\C)$ is a group.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>Recall that a real square matrix $\mathbf A$ is <em><strong>orthogonal</strong></em> if $\mathbf A\mathbf A^{T}=\mathbf A^{T}\mathbf A=\mathbf I$, and a complex square matrix $\mathbf U$ is <em><strong>unitary</strong></em> if $\mathbf U\mathbf U^{*}=\mathbf U^{*}\mathbf U=\mathbf I$, where $\mathbf U^{*}$ denotes the conjugate transpose of $\mathbf U$. Let $\mathcal{O}(n)$ denote the set of $n\times n$ real orthogonal matrices. Then, $(\mathcal{O}(n),\times)$ is a group: the identity element is the identity matrix, and by orthogonality the inverse of each $\mathbf A$ is just its transpose. Similarly, let $\mathcal{U}(n)$ denote the set of $n\times n$ complex unitary matrices. Then, $(\mathcal{U}(n),\times)$ is a group, with the identity matrix as the identity element and the conjugate transpose as the inverse. The groups $\mathcal{O}(n)$ and $\mathcal{U}(n)$ are called the <em><strong>orthogonal group</strong></em> and the <em><strong>unitary group</strong></em>, respectively.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Given $\mathbf A,\mathbf B\in\mathcal{O}(n)$, $\plr{\mathbf{AB}}\plr{\mathbf{AB}}^T=\mathbf A\plr{\mathbf B\mathbf B^T}\mathbf A^T=\mathbf A\mathbf A^T=\mathbf I$ and, similarly, $\plr{\mathbf{BA}}\plr{\mathbf{BA}}^T=\mathbf I$; since $M M^T=\mathbf I$ implies $M^T M=\mathbf I$ for a square matrix $M$, $\mathbf{AB},\mathbf{BA}\in\mathcal O(n)$. Therefore, $\times$ is a binary operation on $\mathcal O(n)$.</p>
+<p>$\forall\mathbf A,\mathbf B,\mathbf C\in\mathcal O(n)$, $\mathbf{ABC}=\mathbf A\plr{\mathbf{BC}}$ holds. $\mathbf I\in\mathcal O(n)$ and $\mathbf{AI}=\mathbf{IA}=\mathbf A$ for all $\mathbf A\in\mathcal O(n)$. By the definition of orthogonality, the inverse of $\mathbf A$ is $\mathbf A^T$, which is again orthogonal since $\plr{\mathbf A^T}\plr{\mathbf A^T}^T=\mathbf A^T\mathbf A=\mathbf I$. Therefore, $\mathcal O(n)$ is a group.</p>
+<p>Similarly, $\mathcal U(n)$ is a group.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>Let $\mathcal{SO}(n)$ denote the set of $n\times n$ real orthogonal matrices with determinant $1$. Then, $(\mathcal{SO}(n),\times)$ is a group, called the <em><strong>special orthogonal group</strong></em>. Clearly, $\mathcal{SO}(n)$ is a subgroup of $\mathcal{O}(n)$, which is in turn a subgroup of $\GL(n,\R)$. Similarly, let $\mathcal{SU}(n)$ denote the set of $n\times n$ complex unitary matrices with determinant $1$. Then, $(\mathcal{SU}(n),\times)$ is a group, called the <em><strong>special unitary group</strong></em>. Clearly, $\mathcal{SU}(n)$ is a subgroup of $\mathcal{U}(n)$, which is in turn a subgroup of $\GL(n,\C)$.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Given $\mathbf A,\mathbf B\in\mathcal{SO}(n)$, $\mathbf{AB}$ and $\mathbf{BA}$ are orthogonal, and by the multiplicativity of the determinant (learned in the prerequisite linear algebra), $\det\plr{\mathbf{AB}}=\det\plr{\mathbf A}\det\plr{\mathbf B}=1$, $\det\plr{\mathbf{BA}}=\det\plr{\mathbf B}\det\plr{\mathbf A}=1$. Therefore, $\mathbf{AB},\mathbf{BA}\in\mathcal{SO}(n)$, so $\times$ is a binary operation on $\mathcal{SO}(n)$.</p>
+<p>$\forall\mathbf A,\mathbf B,\mathbf C\in\mathcal{SO}(n)$, $\mathbf{ABC}=\mathbf A\plr{\mathbf{BC}}$ holds. $\mathbf I\in\mathcal{SO}(n)$ and $\mathbf{AI}=\mathbf{IA}=\mathbf A$ for all $\mathbf A\in\mathcal{SO}(n)$. By the definition of orthogonality, the inverse of $\mathbf A$ is $\mathbf A^T$, and $\det\plr{\mathbf A^T}=\det\plr{\mathbf A}=1$, so $\mathbf A^T\in\mathcal{SO}(n)$. Therefore, $\mathcal{SO}(n)$ is a group.</p>
+<p>Similarly, $\mathcal{SU}(n)$ is a group.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>A <em><strong>permutation matrix</strong></em> is a square matrix with exactly one $1$ in each row and in each column and with $0$ in all other entries. It is a matrix obtained by permuting the rows (or, equivalently, the columns) of an identity matrix. Examples of permutation matrices are</p>
+</li>
+</ul>
+<p>$$
+\begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{bmatrix}, \begin{bmatrix} 0 & 0 & 1 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 0 & 1 & 0 & 0 \end{bmatrix}.
+$$</p>
+<p>  Let $\mathcal{P}(n)$ denote the set of all $n\times n$ permutation matrices. Then, $(\mathcal{P}(n),\times)$ is a group. How many distinct matrices does $\mathcal{P}(n)$ contain? A moment&#39;s thought tells us that the answer is $n!$. It is easy to see that</p>
+<p>$$
+\mathcal{P}(n) \subset \mathcal{O}(n) \subset \GL(n,\R),
+\qquad\qquad
+\mathcal{P}(n) \subset \mathcal{U}(n) \subset \GL(n,\C).
+$$</p>
+<p>  All these subset relations are subgroup relations.</p>
+  <div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>For $\mathbf A,\mathbf B\in\mathcal P(n)$, let the unique $1$ in row $i$ of $\mathbf A$ be at column $\sigma\plr{i}$. Then, $\plr{\mathbf{AB}}_{ij}=\sum_k\mathbf A_{ik}\mathbf B_{kj}=\mathbf B_{\sigma\plr{i},j}$, i.e., $\mathbf{AB}$ is obtained by rearranging the rows of $\mathbf B$, and hence is again a permutation matrix. Therefore, $\times$ is a binary operation on $\mathcal P(n)$.</p>
+<p>The associativity is evident in $\mathcal P(n)$. $\mathbf I\in\mathcal P(n)$ and $\mathbf{AI}=\mathbf{IA}=\mathbf A$ for all $\mathbf A\in\mathcal P(n)$, so the identity is $\mathbf I$. Moreover, $\mathbf A$ is orthogonal, and its inverse $\mathbf A^T$ is again a permutation matrix. Therefore, $\mathcal P(n)$ is a group.</p>
+<p>In addition, since $\mathbf A\mathbf A^T=\mathbf I$, every element of $\mathcal P(n)$ is orthogonal, so $\mathcal P(n)\subset\mathcal O(n)$; the remaining inclusions $\mathcal O(n)\subset\GL(n,\R)$, $\mathcal P(n)\subset\mathcal U(n)$, and $\mathcal U(n)\subset\GL(n,\C)$ follow as every orthogonal matrix is unitary and nonsingular. Therefore, all the subset relations above are subgroup relations.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+
+<ul>
+<li>The following groups are called the <em><strong>affine group</strong></em>, the <em><strong>Euclidean group</strong></em>, and the <em><strong>special Euclidean group</strong></em>, respectively; they are commonly seen in mechanics:</li>
+</ul>
+<p>$$
+\begin{aligned}
+\mathcal{AFF}(n) &= \left\{ \begin{bmatrix} A & x \\ 0 & 1 \end{bmatrix} \mid A \in \GL(n,\R),\ x \in \R^n \right\},\\
+\mathcal{E}(n) &= \left\{ \begin{bmatrix} U & x \\ 0 & 1 \end{bmatrix} \mid U \in \mathcal{O}(n),\ x \in \R^n \right\},\\
+\mathcal{SE}(n) &= \left\{ \begin{bmatrix} U & x \\ 0 & 1 \end{bmatrix} \mid U \in \mathcal{SO}(n),\ x \in \R^n \right\}.
+\end{aligned}
+$$</p>
+  <div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>  Proof.</p>
+<p>  Let $\mathbf A_1,\mathbf A_2\in\mathcal{AFF}(n)$ with $\mathbf A_1=\begin{bmatrix} A_1 & x_1\\ 0 & 1 \end{bmatrix}$ and $\mathbf A_2=\begin{bmatrix} A_2 & x_2\\ 0 & 1 \end{bmatrix}$. Then, $\mathbf A_1\mathbf A_2=\begin{bmatrix} A_1A_2 & A_1x_2+x_1\\ 0 & 1 \end{bmatrix}$. Since $\GL(n,\R)$ is closed under multiplication, $\mathbf A_1\mathbf A_2\in\mathcal{AFF}(n)$.</p>
+<p>  The associativity holds evidently, and the identity element is $\begin{bmatrix} \mathbf I & \mathbf 0\\ \mathbf 0 & 1 \end{bmatrix}\in\mathcal{AFF}(n)$.</p>
+<p>  Every element of $\mathcal{AFF}(n)$ is nonsingular, so its inverse exists. Write the inverse of $\mathbf A=\begin{bmatrix} A & x\\ 0 & 1\end{bmatrix}$ as $\begin{bmatrix}B & y \\ z^T & r\end{bmatrix}$. Then, we have
+$$
+\begin{cases}
+AB+xz^T&=\mathbf I,\\
+Ay+xr&=\mathbf 0,\\
+z^T&=\mathbf 0,\\
+r&=1.
+\end{cases}\Rightarrow \begin{cases}
+B&=A^{-1},\\
+y&=-A^{-1}x,\\
+z&=\mathbf 0,\\
+r&=1.
+\end{cases}
+$$
+  Since $\GL(n,\R)$ is a group, $B=A^{-1}\in\GL(n,\R)$. Therefore, the inverse of $\mathbf A$ is contained in $\mathcal{AFF}(n)$, and hence $\mathcal{AFF}(n)$ is a group.</p>
+<p>  Similarly, $\mathcal{E}(n)$ and $\mathcal{SE}(n)$ are groups.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+
+<h3 id="Ring"><a href="#Ring" class="headerlink" title="Ring"></a>Ring</h3><p>A nonempty set $\mathcal R$ with two <strong>binary operations</strong> $+$ (addition) and $\cdot$ (multiplication) is said to be a <em><strong>ring</strong></em> if </p>
+<ul>
+<li>$(\mathcal R,+)$ is an <strong>abelian group</strong>.</li>
+<li>$\forall a,b,c\in\mathcal R,(ab)c=a(bc)$. <code>(associativity of multiplication)</code></li>
+<li>$\forall a,b,c\in\mathcal R, a(b+c)=ab+ac, (b+c)a=ba+ca$. <code>(distributivity)</code></li>
+</ul>
+<p>A <strong>ring</strong> $\mathcal R$ is said to be <em><strong>commutative</strong></em> if the multiplication is <em>commutative</em>.</p>
+<p>A <strong>ring</strong> $\mathcal R$ is said to be a <em><strong>ring with unity</strong></em> if $\exists u\in\mathcal R,\forall a\in\mathcal R,au=ua=a$. </p>
+<h4 id="Examples-1"><a href="#Examples-1" class="headerlink" title="Examples"></a>Examples</h4><ul>
+<li><p>The sets $\R^{n \times n}$ and $\C^{n \times n}$ are <em><strong>rings with unity</strong></em>. They are commutative exactly when $n = 1$.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Both $+$ and $\cdot$ are <strong>binary operations</strong> on the set.</p>
+<p>$\R^{n\times n}$ and $\C^{n\times n}$ are <strong>abelian groups under addition</strong>; the multiplication is <strong>associative</strong>, and the <strong>distributive</strong> laws hold. Therefore, they are rings. Besides, $\mathbf I$ belongs to both sets, so they are <em>rings with unity</em>.</p>
+<p>For $n=1$, $\R^{n\times n}$ and $\C^{n\times n}$ reduce respectively to $\R$ and $\C$, both of which are commutative under multiplication.</p>
+<p>However, for $n\ge 2$, the multiplication is not commutative: extending $\mathbf E_{11}=\begin{bmatrix} 1 & 0\\ 0 & 0 \end{bmatrix}$ and $\mathbf E_{12}=\begin{bmatrix} 0 & 1\\ 0 & 0 \end{bmatrix}$ with zeros to $n\times n$ matrices, $\mathbf E_{11}\mathbf E_{12}=\mathbf E_{12}$ whereas $\mathbf E_{12}\mathbf E_{11}=\mathbf 0$. Therefore, the commutativity holds exactly when $n=1$.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>The set of integers $\Z$ is a <em><strong>commutative ring with unity</strong></em>.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Both $+$ and $\cdot$ are <strong>binary operations</strong> on the set.</p>
+<p>$\Z$ is an <strong>abelian group under addition</strong>; the multiplication is <strong>associative</strong>, and the <strong>distributive</strong> laws hold. Therefore, $\Z$ is a ring.</p>
+<p>Moreover, the multiplication of $\Z$ is commutative and $1\in\Z$ is its unity. Thus, $\Z$ is a commutative ring with unity.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>The set of all <em>univariate polynomials</em> with <em>real coefficients</em>, under the <em>usual addition and multiplication</em>, is a <em><strong>commutative ring with unity</strong></em>.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>Both $+$ and $\cdot$ are <strong>binary operations</strong> on the set.</p>
+<p>The set is an <strong>abelian group under addition</strong> (with the zero polynomial as the identity and the negation as the inverse); the product of two polynomials is again a polynomial, the multiplication is <strong>associative</strong>, and the <strong>distributive</strong> laws hold. Therefore, this set is a ring.</p>
+<p>Moreover, the multiplication is commutative, and the constant polynomial $1$ is the unity. Thus, this set is a commutative ring with unity.<div align="right">$\square$</div></p>
+
+    </div>
+</div></li>
+</ul>
+<h3 id="Field"><a href="#Field" class="headerlink" title="Field"></a>Field</h3><p>A <strong>commutative ring $\mathbb F$ with unity</strong> is said to be a <em><strong>field</strong></em> if every nonzero element of $\mathbb F$ has a <em>multiplicative inverse</em> in $\mathbb F$. </p>
+<h4 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h4><ul>
+<li><p>The sets of real numbers $\R$, complex numbers $\C$, and rational numbers $\Q$ are all fields.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>$\R$ and $\C$ are obviously fields.</p>
+<p>$+$ and $\cdot$ are binary operations on $\Q$.</p>
+<p>$\Q$ is an <strong>abelian group under</strong> $+$ (with $0$ as the identity and the negation as the inverse); the multiplication is <strong>associative</strong> and <strong>distributive</strong>. Therefore, $\Q$ is a ring. Besides, the multiplication of $\Q$ is commutative, $1\in\Q$ is the unity, and every nonzero element $a/b\in\Q$ has the inverse $b/a\in\Q$, so $\Q$ is a field.<div align="right">$\square$</div></p>
+
+    </div>
+</div>
+</li>
+<li><p>The set of all <em>univariate rational functions</em> with <em>real coefficients</em> is a field.</p>
+<div class='fold collapsed'>
+    <div class='fold-title'>
+        Click to expand proof details
+    </div>
+    <div class='fold-content'>
+        <p>Proof.</p>
+<p>This set is a <strong>ring</strong>: the sum and the product of rational functions are again rational functions, the multiplication is <strong>commutative</strong>, and the constant function $1$ is the <strong>unity</strong>. For a nonzero function $f=p/q$, swapping the numerator and the denominator yields the inverse $q/p$.</p>
+<p>Therefore, this set is a field.<div align="right">$\square$</div></p>
+
+    </div>
+</div></li>
+</ul>
+<link rel="stylesheet" href="/css/folder.css" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/29/MeasureTheory/MT_C1_P1/" rel="prev" title="Chapter 1. Measurable Spaces and Measurable Mappings - Part 1">
+                  <i class="fa fa-angle-left"></i> Chapter 1. Measurable Spaces and Measurable Mappings - Part 1
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Hiram Ye</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/DevRecH" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="/js/fold-pjax-fix.js" defer></script>
+
+</body>
+</html>
