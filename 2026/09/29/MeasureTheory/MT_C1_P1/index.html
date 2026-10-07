@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"devrech.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Lecture notes on Measure Theory (程士宏) -- Chapter 1">
+    <meta name="description" content="Lecture notes on Measure Theory (程士宏)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Measurable Spaces and Measurable Mappings - Part 1">
+<meta property="og:title" content="Chapter 1. Measurable Spaces and Measurable Mappings - Part 1">
 <meta property="og:url" content="https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/index.html">
 <meta property="og:site_name" content="Hiram Ye&#39;s Blog">
-<meta property="og:description" content="Lecture notes on Measure Theory (程士宏) -- Chapter 1">
+<meta property="og:description" content="Lecture notes on Measure Theory (程士宏)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-09-29T06:22:36.000Z">
-<meta property="article:modified_time" content="2026-09-30T11:26:05.995Z">
+<meta property="article:modified_time" content="2026-10-07T05:33:02.729Z">
 <meta property="article:author" content="Hiram Ye">
 <meta property="article:tag" content="dev, software, programming, machine learning, AI, data science">
 <meta name="twitter:card" content="summary">
@@ -37,10 +37,10 @@
 <link rel="canonical" href="https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/","path":"2026/09/29/MeasureTheory/MT_C1_P1/","title":"Measurable Spaces and Measurable Mappings - Part 1"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://devrech.github.io/2026/09/29/MeasureTheory/MT_C1_P1/","path":"2026/09/29/MeasureTheory/MT_C1_P1/","title":"Chapter 1. Measurable Spaces and Measurable Mappings - Part 1"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Measurable Spaces and Measurable Mappings - Part 1 | Hiram Ye's Blog</title>
+<title>Chapter 1. Measurable Spaces and Measurable Mappings - Part 1 | Hiram Ye's Blog</title>
   
 
 
@@ -207,12 +207,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Measurable Spaces and Measurable Mappings - Part 1 | Hiram Ye's Blog">
-      <meta itemprop="description" content="Lecture notes on Measure Theory (程士宏) -- Chapter 1">
+      <meta itemprop="name" content="Chapter 1. Measurable Spaces and Measurable Mappings - Part 1 | Hiram Ye's Blog">
+      <meta itemprop="description" content="Lecture notes on Measure Theory (程士宏)">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Measurable Spaces and Measurable Mappings - Part 1
+          Chapter 1. Measurable Spaces and Measurable Mappings - Part 1
         </h1>
 
         <div class="post-meta-container">
@@ -230,13 +230,13 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-09-30 19:26:05" itemprop="dateModified" datetime="2026-09-30T19:26:05+08:00">2026-09-30</time>
+      <time title="Modified: 2026-10-07 13:33:02" itemprop="dateModified" datetime="2026-10-07T13:33:02+08:00">2026-10-07</time>
     </span>
 
   
 </div>
 
-            <div class="post-description">Lecture notes on Measure Theory (程士宏) -- Chapter 1</div>
+            <div class="post-description">Lecture notes on Measure Theory (程士宏)</div>
         </div>
       </header>
 
@@ -254,7 +254,7 @@ I_A(x)=\begin{cases}
 \end{cases}
 $$</p>
 <ul>
-<li><p><strong>Complement</strong>: $A^c\overset{\text{def}}{=}\{ x:x\notin A \}$.</p>
+<li><p><strong>Complement</strong>: $A^c\dfeq\{ x:x\notin A \}$.</p>
 </li>
 <li><p><strong>Relation between Sets</strong> (<em>A is contained in B</em> or <em>B includes A</em> or <em>A is a subset of B</em>)
 $$
@@ -263,10 +263,10 @@ $$</p>
 </li>
 </ul>
 <h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><ul>
-<li>$A\bigcup B\overset{\text{def}}{=}\{ x:x\in A \text{ or } x\in B \}$. <code>(Union)</code></li>
-<li>$A\bigcap B\overset{\text{def}}{=} \{ x: x\in A \text{ and }x \in B \}$. <code>(Intersection)</code></li>
-<li>$A\backslash B\overset{\text{def}}{=} \{ x: x\in A\text{ and } x\notin B \}$. <code>(Difference)</code></li>
-<li>$A\Delta B\overset{\text{def}}{=} (A\backslash B)\bigcup (B\backslash A)$. <code>(Symmetric Difference)</code><ul>
+<li>$A\bigcup B\dfeq\{ x:x\in A \text{ or } x\in B \}$. <code>(Union)</code></li>
+<li>$A\bigcap B\dfeq \{ x: x\in A \text{ and }x \in B \}$. <code>(Intersection)</code></li>
+<li>$A\backslash B\dfeq \{ x: x\in A\text{ and } x\notin B \}$. <code>(Difference)</code></li>
+<li>$A\Delta B\dfeq (A\backslash B)\bigcup (B\backslash A)$. <code>(Symmetric Difference)</code><ul>
 <li>$A\Delta B=B\Delta A$: The region <strong>that A and B do not share</strong>.</li>
 </ul>
 </li>
@@ -281,17 +281,17 @@ $$</p>
 <p>The same definitions extend to an arbitrary index set:
 $$
 \begin{aligned}
-\bcup_{t\in T}A_t&\def\blr{x:\exists t\in T, x\in A_t},\\
-\bcap_{t\in T}A_t&\def\blr{x:\forall t\in T, x\in A_t\ }.
+\bcup_{t\in T}A_t&\dfeq\blr{x:\exists t\in T, x\in A_t},\\
+\bcap_{t\in T}A_t&\dfeq\blr{x:\forall t\in T, x\in A_t\ }.
 \end{aligned}
 $$
 In particular, if $A_s\bcap A_t=\varnothing$ for all $s\neq t$ in $T$, the collection $\blr{A_t:t\in T}$ is said to be pairwise disjoint.</p>
-<h3 id="Limit"><a href="#Limit" class="headerlink" title="Limit"></a>Limit</h3><p>Consider a sequence of sets $\blr{A_n, n\in\mathbb N}$ with $A_n\subset A_{n+1}$. The sequence is then called <em><strong>non-decreasing</strong></em>, written as $A_n\uparrow$, and its <em><strong>limit</strong></em> is $\lim_{n\to \infty}A_n\def \bcup_{n=1}^\infty A_n$. Dually, the sequence of $A_n\supset A_{n+1}$ is called <em><strong>non-increasing</strong></em>, denoted as $A_n\downarrow$, and its <em><strong>limit</strong></em> becomes $\lim_{n\to\infty}A_n\def \bcap_{n=1}^{\infty}A_n$.</p>
+<h3 id="Limit"><a href="#Limit" class="headerlink" title="Limit"></a>Limit</h3><p>Consider a sequence of sets $\blr{A_n, n\in\mathbb N}$ with $A_n\subset A_{n+1}$. The sequence is then called <em><strong>non-decreasing</strong></em>, written as $A_n\uparrow$, and its <em><strong>limit</strong></em> is $\lim_{n\to \infty}A_n\dfeq \bcup_{n=1}^\infty A_n$. Dually, the sequence of $A_n\supset A_{n+1}$ is called <em><strong>non-increasing</strong></em>, denoted as $A_n\downarrow$, and its <em><strong>limit</strong></em> becomes $\lim_{n\to\infty}A_n\dfeq \bcap_{n=1}^{\infty}A_n$.</p>
 <p>Sequences of either kind are called <strong>monotone</strong>. By definition, every monotone sequence of sets has a <em>limit</em>. Two further limits are the <em><strong>lower</strong></em> and <em><strong>upper limits</strong></em>:
 $$
-\liminf_{n\to\infty} A_n\def \bcup_{n=1}^{\infty}\bcap_{k=n}^{\infty}A_k,
+\liminf_{n\to\infty} A_n\dfeq \bcup_{n=1}^{\infty}\bcap_{k=n}^{\infty}A_k,
 \quad\quad\quad 
-\limsup_{n\to\infty}A_n\def \bcap_{n=1}^{\infty}\bcup_{k=n}^{\infty} A_k.
+\limsup_{n\to\infty}A_n\dfeq \bcap_{n=1}^{\infty}\bcup_{k=n}^{\infty} A_k.
 $$</p>
 <ul>
 <li><code>Lower Limit</code>: The set of elements that appear in <em><strong>all</strong></em> sets from some index $k$.</li>
@@ -299,7 +299,7 @@ $$</p>
 </ul>
 <p>Normally, <em><strong>the lower limit is contained in the upper limit</strong></em>, i.e. $\liminf_{n\to\infty} A_n\subset  \limsup_{n\to\infty}A_n$. If the two coincide, the limit exists and is given by
 $$
-\lim_{n\to\infty} A_n\def \liminf_{n\to\infty} A_n=\limsup_{n\to\infty} A_n.
+\lim_{n\to\infty} A_n\dfeq \liminf_{n\to\infty} A_n=\limsup_{n\to\infty} A_n.
 $$</p>
 <h2 id="Collection-of-Sets-Class-of-Sets"><a href="#Collection-of-Sets-Class-of-Sets" class="headerlink" title="Collection of Sets (Class of Sets)"></a>Collection of Sets (Class of Sets)</h2><p><em>A collection of sets is a set where its elements are sets.</em> Some special collections of sets play a significant role as</p>
 <h3 id="MATHJAX33-system"><a href="#MATHJAX33-system" class="headerlink" title="$\pi$-system"></a>$\pi$-system</h3><p>$\mathscr P$ is said to be a <em>$\pi$-system</em> on $X$ if it is <em><strong>closed</strong></em> under <em>intersection</em>:
@@ -307,7 +307,7 @@ $$
 A\bcap B\in \mathscr P,\ \forall A,B\in\mathscr P.
 $$</p>
 <ul>
-<li><p>$\mathscr P_{\mathbb R}\def \blr{(-\infty, a]:a\in\mathbb R}$ is a $\pi$-system on $\mathbb R$.</p>
+<li><p>$\mathscr P_{\mathbb R}\dfeq \blr{(-\infty, a]:a\in\mathbb R}$ is a $\pi$-system on $\mathbb R$.</p>
 <div class='fold collapsed'>
     <div class='fold-title'>
         Click to expand proof details
@@ -347,7 +347,7 @@ $$
 A\backslash B=\bcup_{k=1}^nC_k.
 $$</p>
 <ul>
-<li><p>$\mathscr L_{\mathbb R}\def \blr{(a,b]:a,b\in\mathbb R}$ is a semi-ring on $\mathbb R$.</p>
+<li><p>$\mathscr L_{\mathbb R}\dfeq \blr{(a,b]:a,b\in\mathbb R}$ is a semi-ring on $\mathbb R$.</p>
 <div class='fold collapsed'>
     <div class='fold-title'>
         Click to expand proof details
@@ -388,7 +388,7 @@ $$
 A,B\in\mathscr R\Rightarrow A\bcup B,A\backslash B\in\mathscr R.
 $$</p>
 <ul>
-<li><p>$\mathscr R_{\mathbb R}\def \bcup_{n=1}^{\infty}\blr{\bcup_{k=1}^{n}(a_k,b_k]:a_k,b_k\in\mathbb R}$ is a ring on $\mathbb R$.</p>
+<li><p>$\mathscr R_{\mathbb R}\dfeq \bcup_{n=1}^{\infty}\blr{\bcup_{k=1}^{n}(a_k,b_k]:a_k,b_k\in\mathbb R}$ is a ring on $\mathbb R$.</p>
 <div class='fold collapsed'>
     <div class='fold-title'>
         Click to expand proof details
@@ -469,7 +469,7 @@ $$
 <li>$A\in\mathscr F\Rightarrow A^c\in\mathscr F$</li>
 <li>$A_n\in\mathscr F,n=1,2,\dots\Rightarrow \bcup_{n=1}^{\infty}A_n\in\mathscr F$</li>
 </ul>
-<p>The smallest $\sigma$-algebra is $\blr{X,\varnothing}$, and the largest $\sigma$-algebra is $\mathscr T\def \blr{A:A\subset X}$.</p>
+<p>The smallest $\sigma$-algebra is $\blr{X,\varnothing}$, and the largest $\sigma$-algebra is $\mathscr T\dfeq \blr{A:A\subset X}$.</p>
 <p>It follows from the definitions above that <em>a $\lambda$-system is a monotone class</em>, and <em>a $\sigma$-algebra is a $\lambda$-system</em>.</p>
 <div class='fold collapsed'>
     <div class='fold-title'>

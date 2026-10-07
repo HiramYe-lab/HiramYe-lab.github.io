@@ -4,6 +4,10 @@
   'use strict';
   var macros = {
   "R": "\\mathbb{R}",
+  "C": "\\mathbb{C}",
+  "Z": "\\mathbb{Z}",
+  "Q": "\\mathbb{Q}",
+  "GL": "\\mathcal{GL}",
   "norm": [
     "\\left\\lVert #1 \\right\\rVert",
     1
@@ -19,7 +23,7 @@
   ],
   "bcup": "\\bigcup",
   "bcap": "\\bigcap",
-  "def": "\\overset{\\text{def}}{=}"
+  "dfeq": "\\overset{\\text{def}}{=}"
 };
   window.MathJax = window.MathJax || {};
   window.MathJax.tex = window.MathJax.tex || {};
